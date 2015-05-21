@@ -1,9 +1,16 @@
 package projetmonopoly;
 
 public abstract class Carreau {
-	private int _numero;
-	private String _nomCarreau;
-	private Monopoly _monopoly;
+
+    private int _numero;
+    private String _nomCarreau;
+    private Monopoly _monopoly;
+    
+    public Carreau (int _numero, String _nomCarreau, Monopoly _monopoly) {
+        this._numero= _numero;
+        this._nomCarreau= _nomCarreau;
+        this._monopoly= _monopoly;
+    }
 
     public int getNumero() {
         return _numero;
@@ -28,5 +35,5 @@ public abstract class Carreau {
     public void setMonopoly(Monopoly _monopoly) {
         this._monopoly = _monopoly;
     }
-        
+
 }
