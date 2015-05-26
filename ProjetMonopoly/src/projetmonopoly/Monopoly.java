@@ -67,4 +67,7 @@ public class Monopoly {
 
         return data;
     }
+    public void InistialiserPartie() {
+        
+    }
 }
