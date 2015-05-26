@@ -3,10 +3,18 @@ package projetmonopoly;
 import java.util.ArrayList;
 
 public class Groupe {
-	private int _prixAchatMaison;
-	private int _prixAchatHotel;
-	private CouleurPropriete _couleur;
-	private ArrayList<ProprieteAConstruire> _proprietes = new ArrayList<ProprieteAConstruire>();
+
+    private int _prixAchatMaison;
+    private int _prixAchatHotel;
+    private CouleurPropriete _couleur;
+    private ArrayList<ProprieteAConstruire> _proprietes = new ArrayList<ProprieteAConstruire>();
+
+    public Groupe(int _prixAchatMaison, int _prixAchatHotel, CouleurPropriete _couleur, ArrayList<ProprieteAConstruire> _proprietes) {
+        this._couleur = _couleur;
+        this._prixAchatHotel = _prixAchatHotel;
+        this._prixAchatMaison = _prixAchatMaison;
+        this._proprietes = _proprietes;    
+    }
 
     public int getPrixAchatMaison() {
         return _prixAchatMaison;
@@ -39,5 +47,5 @@ public class Groupe {
     public void setProprietes(ArrayList<ProprieteAConstruire> _proprietes) {
         this._proprietes = _proprietes;
     }
-        
+
 }

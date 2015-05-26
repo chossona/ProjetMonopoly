@@ -5,6 +5,13 @@ public abstract class CarreauPropriete extends Carreau {
 	private int _prixAchat;
 	private Joueur _proprietaire;
 
+    public CarreauPropriete(int _numero, String _nomCarreau, Monopoly _monopoly, int _loyerBase, int _prixAchat, Joueur _proprietaire) {
+        super(_numero, _nomCarreau, _monopoly);
+        this._loyerBase = _loyerBase;
+        this._prixAchat =  _prixAchat;
+        this._proprietaire = _proprietaire;
+    }
+
     public int getLoyerBase() {
         return _loyerBase;
     }

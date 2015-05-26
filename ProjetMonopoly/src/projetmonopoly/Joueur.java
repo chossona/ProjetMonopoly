@@ -11,6 +11,14 @@ public class Joueur {
 	private Carreau _positionCourante;
 	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
 
+    public Joueur(String _nomJoueur, Monopoly _monopoly, Carreau _positionCourante) {
+        this._nomJoueur = _nomJoueur;
+        this._monopoly = _monopoly;
+        this._positionCourante = _positionCourante;
+    }
+        
+    
+
     public String getNomJoueur() {
         return _nomJoueur;
     }

@@ -9,6 +9,11 @@ public class ProprieteAConstruire extends CarreauPropriete {
 	private ArrayList<Integer> _loyerMaison = new ArrayList<Integer>();
 	private Groupe _groupePropriete;
 
+    public ProprieteAConstruire(int _numero, String _nomCarreau, Monopoly _monopoly, int _loyerBase, int _prixAchat, Joueur _proprietaire) {
+        super(_numero, _nomCarreau, _monopoly, _loyerBase, _prixAchat, _proprietaire);
+    }
+        
+
     public int getNbMaisons() {
         return _nbMaisons;
     }
