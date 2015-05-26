@@ -1,13 +1,13 @@
 package projetmonopoly;
 
 public class Interface {
-	public Monopoly_1 _monopoly;
+	public Monopoly _monopoly;
 
-    public Monopoly_1 getMonopoly() {
+    public Monopoly getMonopoly() {
         return _monopoly;
     }
 
-    public void setMonopoly(Monopoly_1 _monopoly) {
+    public void setMonopoly(Monopoly _monopoly) {
         this._monopoly = _monopoly;
     }
         
