@@ -4,8 +4,8 @@ package projetmonopoly;
 import java.util.ArrayList;
 
 public class ProprieteAConstruire extends CarreauPropriete {
-	private int _nbMaisons = 0;
-	private int _nbHotels = 0;
+	private int _nbMaisons = 32;
+	private int _nbHotels = 12;
 	private ArrayList<Integer> _loyerMaison = new ArrayList<Integer>();
 	private Groupe _groupePropriete;
 
