@@ -109,30 +109,37 @@ public class Monopoly {
     public Interface getInterf() {
         return interf;
     }
-//coucou
+
     public void InistialiserPartie() {
         Scanner sc = new Scanner(System.in);
         int nbjoueur;
         String nom;
         this.getInterf().Afficher("Saississez le nombre de joueurs : ");
         nbjoueur = sc.nextInt();
-        ArrayList<Joueur> JoueursNonOrdonné = new ArrayList();
+
         for (int i = 0; i < nbjoueur; i++) {
             this.getInterf().Afficher("Saisissez le nom du joueur n°" + i);
             nom = sc.next();
-            JoueursNonOrdonné.add(new Joueur(nom, this, this.getCarreau().get(1)));
+            this.getJoueurs().add(new Joueur(nom, this, this.getCarreau().get(1)));
             SetDés();
-            
-            this.getJoueurs().get(i).setCash(1500+getD1()+getD2());
+
+            this.getJoueurs().get(i).setCash(getD1() + getD2());        //stockage du lancer de dés dans cash (pour savoir qui commence)
 
         }
-        this.getJoueurs().add(JoueursNonOrdonné.get(0));
-        for (int i = 1; i < nbjoueur;i++) {
-            
+        Joueur j3 = new Joueur("d", this, this.getCarreau().get(1));    //Tri joueur par resultat dés
+        for (Joueur j : this.getJoueurs()) {
+            for(Joueur j2 : this.getJoueurs()) {
+                if (j.getCash()<j2.getCash()) {
+                    j3 = j;            //permut joueur
+                    j = j2;
+                    j2 = j3;        //fin permut
+                }
+            }
+        }                                                               //fin tri joueur
+        
+        for (Joueur j : this.getJoueurs()) {                    //restauration du cash des joueur
+            j.setCash(1500);
         }
-        
-
-        
 
     }
 
