@@ -109,7 +109,7 @@ public class Monopoly {
     public Interface getInterf() {
         return interf;
     }
-
+//coucou
     public void InistialiserPartie() {
         Scanner sc = new Scanner(System.in);
         int nbjoueur;
