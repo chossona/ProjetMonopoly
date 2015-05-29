@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class Monopoly {
 
-    private HashMap<Integer,Carreau> Carreau;
+    private HashMap<Integer, Carreau> Carreau;
     private LinkedList<Joueur> Joueurs;
     private int d1;
     private int d2;
@@ -105,34 +105,37 @@ public class Monopoly {
     private void setD2(int d2) {
         this.d2 = d2;
     }
-    
-     public Interface getInterf() {
+
+    public Interface getInterf() {
         return interf;
     }
-     
+
     public void InistialiserPartie() {
         Scanner sc = new Scanner(System.in);
-        int nbjoueur; String nom;
+        int nbjoueur;
+        String nom;
         this.getInterf().Afficher("Saississez le nombre de joueurs : ");
         nbjoueur = sc.nextInt();
-        
-        
-        for (int i = 0; i<nbjoueur;i++){
-            this.getInterf().Afficher("Saisissez le nom du joueur n°"+i);
+        ArrayList<Joueur> JoueursNonOrdonné = new ArrayList();
+        for (int i = 0; i < nbjoueur; i++) {
+            this.getInterf().Afficher("Saisissez le nom du joueur n°" + i);
             nom = sc.next();
-            this.getJoueurs().add(new Joueur(nom, this, this.getCarreau().get(1)));
-            this.getJoueurs().get(i).setCash(1500);
+            JoueursNonOrdonné.add(new Joueur(nom, this, this.getCarreau().get(1)));
+            SetDés();
+            
+            this.getJoueurs().get(i).setCash(1500+getD1()+getD2());
+
+        }
+        this.getJoueurs().add(JoueursNonOrdonné.get(0));
+        for (int i = 1; i < nbjoueur;i++) {
             
         }
-       
         
+
         
+
     }
 
-    
-    
-    
-    
     /**
      * @return the Joueurs
      */
@@ -150,17 +153,15 @@ public class Monopoly {
     /**
      * @return the Carreau
      */
-    private HashMap<Integer,Carreau> getCarreau() {
+    private HashMap<Integer, Carreau> getCarreau() {
         return Carreau;
     }
 
     /**
      * @param Carreau the Carreau to set
      */
-    private void setCarreau(HashMap<Integer,Carreau> Carreau) {
+    private void setCarreau(HashMap<Integer, Carreau> Carreau) {
         this.Carreau = Carreau;
     }
 
- 
-   
 }
