@@ -11,4 +11,7 @@ public class Interface {
         this._monopoly = _monopoly;
     }
         
+    public void Afficher(String s) {
+        System.out.println(s);
+    }
 }

@@ -10,15 +10,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
+
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Monopoly {
-    private HashSet<Carreau> Carreau;
-    private HashSet<Joueur> Joueurs;
+
+    private HashMap<Integer,Carreau> Carreau;
+    private LinkedList<Joueur> Joueurs;
     private int d1;
     private int d2;
     private Interface interf;
-    
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
@@ -67,7 +71,96 @@ public class Monopoly {
 
         return data;
     }
+
+    public void SetDés() {
+        Random x = new Random();
+        setD1(x.nextInt(6) + 1);
+        setD2(x.nextInt(6) + 1);
+    }
+
+    /**
+     * @return the d1
+     */
+    public int getD1() {
+        return d1;
+    }
+
+    /**
+     * @return the d2
+     */
+    public int getD2() {
+        return d2;
+    }
+
+    /**
+     * @param d1 the d1 to set
+     */
+    private void setD1(int d1) {
+        this.d1 = d1;
+    }
+
+    /**
+     * @param d2 the d2 to set
+     */
+    private void setD2(int d2) {
+        this.d2 = d2;
+    }
+    
+     public Interface getInterf() {
+        return interf;
+    }
+     
     public void InistialiserPartie() {
+        Scanner sc = new Scanner(System.in);
+        int nbjoueur; String nom;
+        this.getInterf().Afficher("Saississez le nombre de joueurs : ");
+        nbjoueur = sc.nextInt();
+        
+        
+        for (int i = 0; i<nbjoueur;i++){
+            this.getInterf().Afficher("Saisissez le nom du joueur n°"+i);
+            nom = sc.next();
+            this.getJoueurs().add(new Joueur(nom, this, this.getCarreau().get(1)));
+            this.getJoueurs().get(i).setCash(1500);
+            
+        }
+       
+        
         
     }
+
+    
+    
+    
+    
+    /**
+     * @return the Joueurs
+     */
+    private LinkedList<Joueur> getJoueurs() {
+        return Joueurs;
+    }
+
+    /**
+     * @param Joueurs the Joueurs to set
+     */
+    private void setJoueurs(LinkedList<Joueur> Joueurs) {
+        this.Joueurs = Joueurs;
+    }
+
+    /**
+     * @return the Carreau
+     */
+    private HashMap<Integer,Carreau> getCarreau() {
+        return Carreau;
+    }
+
+    /**
+     * @param Carreau the Carreau to set
+     */
+    private void setCarreau(HashMap<Integer,Carreau> Carreau) {
+        this.Carreau = Carreau;
+    }
+
+ 
+   
 }
