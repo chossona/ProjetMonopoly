@@ -17,7 +17,7 @@ public class Main {
         inter.setMonopoly(m);
         m.InitialiseInterface(inter);
         
-        m.InitialiseCartes(/users/info/etu-s2/chossona/dataCartes.txt);
+        m.InitialiseCartes("/users/info/etu-s2/chossona/dataCartes.txt",true);//initialise carte chance
 
         m.InitialiserPartie();//initailise joueurs
 

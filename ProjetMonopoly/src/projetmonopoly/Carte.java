@@ -12,9 +12,17 @@ package projetmonopoly;
  */
 public class Carte {
     private String nomCarte;
-    public int numCarte;
+    private  int numCarte;
+    private boolean chance;
+
     public void ActionCarte() {
         
+    }
+public Carte(int numCarte, String nomCarte, boolean b) {
+    
+        this.nomCarte=nomCarte;
+        this.numCarte=numCarte;
+        this.chance=b;
     }
 
     /**

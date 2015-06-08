@@ -331,4 +331,93 @@ public class Monopoly {
         
         
     }
+
+     public void InitialiseCartes(String dataFilename,boolean b) {
+
+        try {
+
+            ArrayList<String[]> data = readDataFile(dataFilename, ";");
+
+            //TODO: create cases instead of displaying
+            for (int i = 0; i < data.size(); ++i) {
+                String caseType = data.get(i)[0];
+                if (caseType.compareTo("Prison") == 0) {
+                    System.out.println(data.get(i)[0]);
+
+            
+                           Carte carte = new Carte(
+                           Integer.parseInt(data.get(i)[2]),
+                           data.get(i)[1],
+                           b);
+                           
+                           if(b){getCarteChance().add(carte);}
+                           else{getCarteCaisse().add(carte);}
+                
+
+                } else if (caseType.compareTo("Déplacer") == 0) {
+                    System.out.println(data.get(i)[0]);
+                    CarteDeplacer deplacer = new CarteDeplacer(//
+                              Integer.parseInt(data.get(i)[2]),
+                             data.get(i)[1],
+                              b,
+                              Integer.parseInt(data.get(i)[3])
+                    );
+                           
+                           if(b){getCarteChance().add(deplacer);}
+                           else{getCarteCaisse().add(deplacer);}
+
+                } else if (caseType.compareTo("Pargent") == 0) {
+                    System.out.println(data.get(i)[0]);
+   
+                           
+                           CarteArgent carteArgent=new CarteArgent(
+                           Integer.parseInt(data.get(i)[2]),
+                           data.get(i)[1],
+                           b,
+                           Integer.parseInt(data.get(i)[3]));
+                           
+                          if(b){getCarteChance().add(carteArgent);}
+                           else{getCarteCaisse().add(carteArgent);}
+
+                } else if (caseType.compareTo("Voyager") == 0) {
+                    System.out.println(data.get(i)[0]);
+                    
+                    CarteVoyage carteVoyage = new CarteVoyage(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this);
+                    getCarreau().add(carreauTirage);
+
+                } else if (caseType.compareTo("CA") == 0) {
+                    System.out.println(data.get(i)[0]);
+                    CarreauArgent carreauArgent = new CarreauArgent(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this,
+                            Integer.parseInt(data.get(i)[3]));
+                    getCarreau().add(carreauArgent);
+
+                } else if (caseType.compareTo("CM") == 0) {
+                    System.out.println(data.get(i)[0]);
+                    CarreauMouvement carreauMouvement = new CarreauMouvement(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this);
+                    getCarreau().add(carreauMouvement);
+
+                } else {
+                    System.err.println("[buildGamePleateau()] : Invalid Data type");
+
+                }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("[buildGamePlateau()] : File is not found!");
+        } catch (IOException e) {
+            System.err.println("[buildGamePlateau()] : Error while reading file!");
+        }
+
+}
+
 }
