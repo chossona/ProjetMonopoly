@@ -2,7 +2,9 @@ package projetmonopoly;
 
 public class Gare extends CarreauPropriete {
 
-    public Gare(int _numero, String _nomCarreau, Monopoly _monopoly, int _loyerBase, int _prixAchat) {
-        super(_numero, _nomCarreau, _monopoly, _loyerBase, _prixAchat);
+    public Gare(int _loyerBase, int _prixAchat, Joueur _proprietaire, int _numero, String _nomCarreau, Monopoly _monopoly) {
+        super(_loyerBase, _prixAchat, _proprietaire, _numero, _nomCarreau, _monopoly);
     }
+
+    
 }

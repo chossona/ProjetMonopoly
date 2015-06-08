@@ -1,51 +1,42 @@
 package projetmonopoly;
-
 import java.util.ArrayList;
 
 public class Groupe {
+	private int _prixAchatMaison;
+	private int _prixAchatHotel;
+	public CouleurPropriete _couleur;
+	public ArrayList<ProprieteAConstruire> _proprietes = new ArrayList<ProprieteAConstruire>();
 
-    private int _prixAchatMaison;
-    private int _prixAchatHotel;
-    private CouleurPropriete _couleur;
-    private ArrayList<ProprieteAConstruire> _proprietes = new ArrayList<ProprieteAConstruire>();
-
-    public Groupe(int _prixAchatMaison, int _prixAchatHotel, CouleurPropriete _couleur, ArrayList<ProprieteAConstruire> _proprietes) {
-        this._couleur = _couleur;
-        this._prixAchatHotel = _prixAchatHotel;
+    public Groupe(int _prixAchatMaison, int _prixAchatHotel, CouleurPropriete _couleur) {
         this._prixAchatMaison = _prixAchatMaison;
-        this._proprietes = _proprietes;    
-    }
-
-    public int getPrixAchatMaison() {
-        return _prixAchatMaison;
-    }
-
-    public void setPrixAchatMaison(int _prixAchatMaison) {
-        this._prixAchatMaison = _prixAchatMaison;
-    }
-
-    public int getPrixAchatHotel() {
-        return _prixAchatHotel;
-    }
-
-    public void setPrixAchatHotel(int _prixAchatHotel) {
         this._prixAchatHotel = _prixAchatHotel;
-    }
-
-    public CouleurPropriete getCouleur() {
-        return _couleur;
-    }
-
-    public void setCouleur(CouleurPropriete _couleur) {
         this._couleur = _couleur;
     }
+public void ajouterropriete (CarreauPropriete propriete){
+    ArrayList prop = getProprietes();
+    prop.add(propriete);
+    setProprietes(prop);
+}
 
+    /**
+     * @return the _proprietes
+     */
     public ArrayList<ProprieteAConstruire> getProprietes() {
         return _proprietes;
     }
 
+    /**
+     * @param _proprietes the _proprietes to set
+     */
     public void setProprietes(ArrayList<ProprieteAConstruire> _proprietes) {
         this._proprietes = _proprietes;
     }
 
+    /**
+     * @return the _couleur
+     */
+    public CouleurPropriete getCouleur() {
+        return _couleur;
+    }
 }
+    

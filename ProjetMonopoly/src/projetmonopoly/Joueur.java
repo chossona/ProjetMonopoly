@@ -11,10 +11,12 @@ public class Joueur {
 	private Carreau _positionCourante;
 	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
         public int tempsPrison; 
-    public Joueur(String _nomJoueur, Monopoly _monopoly, Carreau _positionCourante) {
+     public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
         this._nomJoueur = _nomJoueur;
+        this._cash = _cash;
         this._monopoly = _monopoly;
         this._positionCourante = _positionCourante;
+    
         this.tempsPrison = 0;
     }
         

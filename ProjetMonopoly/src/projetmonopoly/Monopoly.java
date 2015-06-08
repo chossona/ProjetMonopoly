@@ -14,44 +14,129 @@ import java.util.HashMap;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Monopoly {
 
-    private HashMap<Integer, Carreau> Carreau;
+    public ArrayList<Groupe> groupes = new ArrayList<Groupe>();
+    public ArrayList<Carreau> carreau = new ArrayList<Carreau>();
+
     private LinkedList<Joueur> Joueurs;
     private int d1;
     private int d2;
     private Interface interf;
-    private LinkedList<Carte> carteChance;
-    private LinkedList<Carte> carteCaisse;
+    public LinkedList<Carte> carteChance;
+    public LinkedList<Carte> carteCaisse;
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
     }
 
     private void buildGamePlateau(String dataFilename) {
+
         try {
+
             ArrayList<String[]> data = readDataFile(dataFilename, ",");
 
             //TODO: create cases instead of displaying
             for (int i = 0; i < data.size(); ++i) {
                 String caseType = data.get(i)[0];
                 if (caseType.compareTo("P") == 0) {
-                    System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+
+                    //cherche le groupe de la propriete dans carreau
+                    int g = 0;
+                    boolean b = true;
+                    while (g < getGroupes().size() && b) {
+                        if (getGroupes().get(g).getCouleur().equals(CouleurPropriete.valueOf(data.get(i)[3]))) {
+                            b = false;
+                        }
+                        g++;
+                    }
+
+                    /*creation d'un groupe */                    if (b) {
+
+                        Groupe groupe = new Groupe(
+                                Integer.parseInt(data.get(i)[11]),
+                                Integer.parseInt(data.get(i)[12]),
+                                CouleurPropriete.valueOf(data.get(i)[3]));
+                        getGroupes().add(groupe);
+                    }
+
+         //comme dans le monopoly les propriétés d'un groupe se suivent, on sait que l'on doit ajouter la propriete sur sur dernier groupe => groupes.get(groupes.size()-1)             
+                    //creation propriete 
+                    ArrayList loyersMaisons = new ArrayList();//creation arraylist des loyers en fonction des constructions
+                    for (int j = 6; j <= 10; j++) {
+                        loyersMaisons.add(data.get(i)[j]);
+                    }
+                    ProprieteAConstruire carProp = new ProprieteAConstruire(
+                            Integer.parseInt(data.get(i)[5]),
+                            Integer.parseInt(data.get(i)[4]),
+                            null,
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this,
+                            getGroupes().get(getGroupes().size() - 1),
+                            loyersMaisons);
+
+                    //ajout d'une propriete dans groupe
+                    getGroupes().get(getGroupes().size() - 1).ajouterropriete(carProp);
+             //ajout du carrreau    
+                    //  carreau.put(1, null);  
+                    getCarreau().add(carProp);
+
                 } else if (caseType.compareTo("G") == 0) {
-                    System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+                    Gare gare = new Gare(
+                            25,
+                            Integer.parseInt(data.get(i)[3]),
+                            null,
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this);
+                    getCarreau().add(gare);
+
                 } else if (caseType.compareTo("C") == 0) {
-                    System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+                    Compagnie compagnie = new Compagnie(
+                            10,
+                            Integer.parseInt(data.get(i)[3]),
+                            null,
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this
+                    );
+                    getCarreau().add(compagnie);
+
                 } else if (caseType.compareTo("CT") == 0) {
-                    System.out.println("Case Tirage :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+                    CarreauTirage carreauTirage = new CarreauTirage(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this);
+                    getCarreau().add(carreauTirage);
+
                 } else if (caseType.compareTo("CA") == 0) {
-                    System.out.println("Case Argent :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+                    CarreauArgent carreauArgent = new CarreauArgent(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this,
+                            Integer.parseInt(data.get(i)[3]));
+                    getCarreau().add(carreauArgent);
+
                 } else if (caseType.compareTo("CM") == 0) {
-                    System.out.println("Case Mouvement :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+                    System.out.println(data.get(i)[0]);
+                    CarreauMouvement carreauMouvement = new CarreauMouvement(
+                            Integer.parseInt(data.get(i)[1]),
+                            data.get(i)[2],
+                            this);
+                    getCarreau().add(carreauMouvement);
+
                 } else {
                     System.err.println("[buildGamePleateau()] : Invalid Data type");
+
                 }
+
             }
 
         } catch (FileNotFoundException e) {
@@ -59,6 +144,7 @@ public class Monopoly {
         } catch (IOException e) {
             System.err.println("[buildGamePlateau()] : Error while reading file!");
         }
+
     }
 
     private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException {
@@ -74,10 +160,14 @@ public class Monopoly {
         return data;
     }
 
+    public Joueur getJoueur(int j) {
+        return Joueurs.get(j);
+    }
+
     public void SetDés() {
         Random x = new Random();
-        setD1(x.nextInt(6));
-        setD2(x.nextInt(6));
+        setD1(x.nextInt(6) + 1);
+        setD2(x.nextInt(6) + 1);
     }
 
     /**
@@ -101,9 +191,6 @@ public class Monopoly {
         this.d1 = d1;
     }
 
-    /**
-     * @param d2 the d2 to set
-     */
     private void setD2(int d2) {
         this.d2 = d2;
     }
@@ -112,43 +199,72 @@ public class Monopoly {
         return interf;
     }
 
-    public void InistialiserPartie() {
-        Scanner sc = new Scanner(System.in);
-        int nbjoueur;
-        String nom;
-        this.getInterf().Afficher("Saississez le nombre de joueurs : ");
-        nbjoueur = sc.nextInt();
+    public void InitialiseInterface(Interface interf) {
+        this.interf = interf;
+    }
 
-        for (int i = 0; i < nbjoueur; i++) {
-            this.getInterf().Afficher("Saisissez le nom du joueur n°" + i);
-            nom = sc.next();
-            this.getJoueurs().add(new Joueur(nom, this, this.getCarreau().get(1)));
-            SetDés();
+    public void InitialiserPartie() {
+        ArrayList<Joueur> noms = new ArrayList<Joueur>();
 
-            this.getJoueurs().get(i).setCash(getD1() + getD2());        //stockage du lancer de dés dans cash (pour savoir qui commence)
-
+        //Initialise Joueurs avec leurs noms 
+        int nbjoueurs = this.interf.DemandeInformationsNB_Joueur();
+        for (int i = 0; i < nbjoueurs; i++) {
+            Joueur j = new Joueur(this.interf.DemandeInformaionNom_Joueur(i), 0, this, this.getCarreau().get(0));
+            noms.add(j);
         }
-        Joueur j3 = new Joueur("d", this, this.getCarreau().get(1));    //Tri joueur par resultat dés
-        for (Joueur j : this.getJoueurs()) {
-            for(Joueur j2 : this.getJoueurs()) {
-                if (j.getCash()<j2.getCash()) {
-                    j3 = j;            //permut joueur
-                    j = j2;
-                    j2 = j3;        //fin permut
-                }
-            }
-        }                                                               //fin tri joueur
-        
-        for (Joueur j : this.getJoueurs()) {                    //restauration du cash des joueur
-            j.setCash(1500);
+
+        LanceDesDepart(noms);//fait lancer les d
+        noms = metDansOrdre(noms); //met dans l'ordre les joueur
+        for (Joueur nom : noms) {
+            //initialise l'argent
+            nom.setCash(1500);
         }
 
     }
 
-    /**
-     * @return the Joueurs
-     */
-    public LinkedList<Joueur> getJoueurs() {
+    public ArrayList<Joueur> metDansOrdre(ArrayList<Joueur> Noms) {
+
+        int i = 0;
+        boolean b = true;
+        String saveNomsJoueur;
+        int saveNumDes;
+
+        // met joueur dans l'ordre
+        while (i < Noms.size() && b) {
+            b = false;
+            for (int j = 0; j < Noms.size() - 1; j++) {
+
+                if (Noms.get(j).getCash() >= Noms.get(j++).getCash()) {
+                    b = true;
+
+                    saveNomsJoueur = Noms.get(j).getNomJoueur();//svg du joueur j
+                    saveNumDes = Noms.get(j).getCash();
+
+                    Noms.get(j).setNomJoueur(Noms.get(j + 1).getNomJoueur());//met joueur j++ a la place de j
+                    Noms.get(j).setCash(Noms.get(j + 1).getCash());
+
+                    Noms.get(j).setNomJoueur(saveNomsJoueur);//met joueur j a la place de j++
+                    Noms.get(j).setCash(saveNumDes);
+                }
+            }
+            i++;
+        }
+
+        return Noms;
+    }
+
+    private ArrayList<Joueur> LanceDesDepart(ArrayList<Joueur> Noms) {
+        int des12;
+        for (Joueur Nom : Noms) {
+            SetDés();
+            System.out.println(getD1() + getD2());
+            des12 = getD1() + getD2();
+            Nom.setCash(des12); //stockage du lancer de dés dans cash (pour savoir qui commence)
+        }
+        return Noms;
+    }
+
+    private LinkedList<Joueur> getJoueurs() {
         return Joueurs;
     }
 
@@ -160,20 +276,17 @@ public class Monopoly {
     }
 
     /**
-     * @return the Carreau
+     * @return the carteChance
      */
-    public HashMap<Integer, Carreau> getCarreau() {
-        return Carreau;
+    public LinkedList<Carte> getCarteChance() {
+        return carteChance;
     }
 
     /**
-     * @param Carreau the Carreau to set
+     * @param carteChance the carteChance to set
      */
-    private void setCarreau(HashMap<Integer, Carreau> Carreau) {
-        this.Carreau = Carreau;
-    }
-    public LinkedList<Carte> getCarteChance() {
-        return carteChance;
+    public void setCarteChance(LinkedList<Carte> carteChance) {
+        this.carteChance = carteChance;
     }
 
     /**
@@ -182,5 +295,26 @@ public class Monopoly {
     public LinkedList<Carte> getCarteCaisse() {
         return carteCaisse;
     }
-        
+
+    /**
+     * @param carteCaisse the carteCaisse to set
+     */
+    public void setCarteCaisse(LinkedList<Carte> carteCaisse) {
+        this.carteCaisse = carteCaisse;
+    }
+
+    /**
+     * @return the groupes
+     */
+    public ArrayList<Groupe> getGroupes() {
+        return groupes;
+    }
+
+    /**
+     * @return the carreau
+     */
+    public ArrayList<Carreau> getCarreau() {
+        return carreau;
+    }
+
 }
