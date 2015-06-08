@@ -23,6 +23,8 @@ public class Monopoly {
     private int d1;
     private int d2;
     private Interface interf;
+    private LinkedList<Carte> carteChance;
+    private LinkedList<Carte> carteCaisse;
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
@@ -170,5 +172,15 @@ public class Monopoly {
     private void setCarreau(HashMap<Integer, Carreau> Carreau) {
         this.Carreau = Carreau;
     }
+    public LinkedList<Carte> getCarteChance() {
+        return carteChance;
+    }
 
+    /**
+     * @return the carteCaisse
+     */
+    public LinkedList<Carte> getCarteCaisse() {
+        return carteCaisse;
+    }
+        
 }
