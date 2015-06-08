@@ -168,7 +168,7 @@ public class Monopoly {
         Random x = new Random();
         setD1(x.nextInt(6) + 1);
         setD2(x.nextInt(6) + 1);
-    }
+    }int cashj = j.getCash();
 
     /**
      * @return the d1

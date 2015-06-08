@@ -60,4 +60,19 @@ System.out.println("Gares joueur : " + gare);
 }
 
 }
+   
+   public void afficherInfos(ProprieteAConstruire prop){
+       System.out.println("Nom carreau : " + prop.getNomCarreau());
+       System.out.println("Prix carreau : "+ prop.getPrixAchat());
+       System.out.println("Propiétaire carreau : "+prop.getProprietaire());
+       System.out.println("Groupe carreau : "+prop.getGroupePropriete());
+       System.out.println("Maison carreau : "+prop.getNb_Maisons());
+       System.out.println("Hotel carreau : "+prop.getNb_Hotels());
+   }
+   
+   public void afficher(String s){};
+   
+   public boolean reponse(){
+       return true;
+   }
 }

@@ -6,6 +6,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
 	private int nb_Hotels;
 	private java.util.ArrayList<Integer> _loyerMaison;
 	private Groupe _groupePropriete;
+        private Interface inter;
 
     public ProprieteAConstruire(int _loyerBase, int _prixAchat, Joueur _proprietaire, int _numero, String _nomCarreau, Monopoly _monopoly,Groupe groupe,java.util.ArrayList<Integer> Lmaisons) {
         super(_loyerBase, _prixAchat, _proprietaire, _numero, _nomCarreau, _monopoly);
@@ -72,5 +73,22 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._groupePropriete = _groupePropriete;
     }
 
+    public void achatPropriete(Joueur j) {
+        ;
+        
+        if (this.getPrixAchat()<= j.getCash()){
+           inter.afficher("Voulez vous acheter la propriété ?");
+           if (inter.reponse()){
+               j.setCash(j.getCash()-this.getPrixAchat());
+               this.setProprietaire(j);
+           }
+            inter.afficherInfos((ProprieteAConstruire)j.getPositionCourante());
+            
+        }
+        else{
+            inter.afficher("Vous n'avez pas assez de Cash");
+        }
+        inter.afficherInfos(this);
+    }
    
 }

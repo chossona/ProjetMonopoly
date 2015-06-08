@@ -15,7 +15,7 @@ public abstract class CarreauPropriete extends Carreau {
     /**
      * @return the _prixAchat
      */
-    private int getPrixAchat() {
+    public int getPrixAchat() {
         return _prixAchat;
     }
 
@@ -29,21 +29,21 @@ public abstract class CarreauPropriete extends Carreau {
     /**
      * @return the _proprietaire
      */
-    private Joueur getProprietaire() {
+    public Joueur getProprietaire() {
         return _proprietaire;
     }
 
     /**
      * @param _proprietaire the _proprietaire to set
      */
-    private void setProprietaire(Joueur _proprietaire) {
+    protected void setProprietaire(Joueur _proprietaire) {
         this._proprietaire = _proprietaire;
     }
 
     /**
      * @return the _loyerBase
      */
-    private int getLoyerBase() {
+    public int getLoyerBase() {
         return _loyerBase;
     }
 
@@ -55,10 +55,10 @@ public abstract class CarreauPropriete extends Carreau {
     }
     
     
-    @Override
-    public void action(Joueur j){
+   // @Override
+    //public void action(Joueur j){
         
-    }
+   // }
 }
 
    
