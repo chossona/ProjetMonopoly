@@ -10,11 +10,12 @@ public class Joueur {
 	private ArrayList<Gare> _gares = new ArrayList<Gare>();
 	private Carreau _positionCourante;
 	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
-
+        public int tempsPrison; 
     public Joueur(String _nomJoueur, Monopoly _monopoly, Carreau _positionCourante) {
         this._nomJoueur = _nomJoueur;
         this._monopoly = _monopoly;
         this._positionCourante = _positionCourante;
+        this.tempsPrison = 0;
     }
         
     
@@ -73,6 +74,20 @@ public class Joueur {
 
     public void setProprietesAConstruire(ArrayList<ProprieteAConstruire> _proprietesAConstruire) {
         this._proprietesAConstruire = _proprietesAConstruire;
+    }
+
+    /**
+     * @return the tempsPrison
+     */
+    public int getTempsPrison() {
+        return tempsPrison;
+    }
+
+    /**
+     * @param tempsPrison the tempsPrison to set
+     */
+    public void setTempsPrison(int tempsPrison) {
+        this.tempsPrison = tempsPrison;
     }
         
 }

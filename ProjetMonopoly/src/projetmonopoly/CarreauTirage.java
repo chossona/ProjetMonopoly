@@ -6,11 +6,19 @@ public class CarreauTirage extends CarreauAction {
         super(_numero, _nomCarreau, _monopoly);
     }
     public void TirerUneCarte(){
+        Carte c;
         if (this.getNumero() == 7 ||this.getNumero() == 22 || this.getNumero() == 36 ){
-            this.getMonopoly().getCarteChance().getFirst().ActionCarte();
+            c = this.getMonopoly().getCarteChance().getFirst();
+            c.ActionCarte();
         }
         else if (this.getNumero() == 2 ||this.getNumero() == 17 || this.getNumero() == 33 ){
-            this.getMonopoly().getCarteCaisse().getFirst().ActionCarte();
+            c = this.getMonopoly().getCarteCaisse().getFirst();
+            c.ActionCarte();
+        }
+      
+       
+        if (){
+            
         }
     }
 }

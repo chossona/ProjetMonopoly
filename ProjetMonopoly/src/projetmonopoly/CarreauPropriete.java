@@ -35,5 +35,9 @@ public abstract class CarreauPropriete extends Carreau {
     public void setProprietaire(Joueur _proprietaire) {
         this._proprietaire = _proprietaire;
     }
+    
+    public void action (Joueur j){
+        
+    }
         
 }
