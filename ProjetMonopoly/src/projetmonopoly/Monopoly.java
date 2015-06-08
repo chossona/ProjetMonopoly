@@ -430,5 +430,40 @@ public class Monopoly {
     public void setCarteCaisse(ArrayList<Carte> carteCaisse) {
         this.carteCaisse = carteCaisse;
     }
-      
+        public LinkedList<Carte> initialiseTas(LinkedList<Carte> carte) {
+        Random p = new Random();
+        LinkedList<Carte> cartes = null;
+        int c;
+        for (int i = 0; i <= carte.size(); i++) {
+            c = p.nextInt(carte.size());
+            cartes.add(carte.get(c));
+            carte.remove(c);
+
+        }
+        return cartes;
+
+    }
+
+    public void EstEliminé(Joueur j) {
+        if (j.joueurVie(j.getCash()) == false) {
+            for (int i=0; i<=j.getProprietesAConstruire().size();i++) {
+                j.getProprietesAConstruire().get(i).setProprietaire(null);
+                
+            }
+            for(int i=0; i<=j.getCompagnies().size();i++) {
+                j.getCompagnies().get(i).setProprietaire(null);
+            }
+            
+            for (int i=0; i<=j.getGares().size();i++) {
+                j.getGares().get(i).setProprietaire(null);
+            }
+            
+           j.getProprietesAConstruire().removeAll(carreau);
+           j.getCompagnies().removeAll(carreau);
+           j.getGares().removeAll(carreau);   
+           
+           this.Joueurs.remove(j);
+           
+        }
+    }
 }

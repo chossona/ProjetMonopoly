@@ -82,4 +82,8 @@ System.out.println("Gares joueur : " + gare);
         System.out.println("Total : "+monopoly.getD1()+monopoly.getD2());
        
    }
+   
+   public void EstMort(Joueur j) {      
+           System.out.println("joueur : " + j.getNomJoueur() + "est éliminé");             
+   }
 }

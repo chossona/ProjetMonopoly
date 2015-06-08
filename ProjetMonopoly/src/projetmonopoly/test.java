@@ -6,6 +6,8 @@
 
 package projetmonopoly;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author chossona
@@ -17,6 +19,6 @@ public class test {
         monopoly.SetDés();
         System.out.println(monopoly.getD1());
         System.out.println(monopoly.getD2());
-        
+       
     }
 }
