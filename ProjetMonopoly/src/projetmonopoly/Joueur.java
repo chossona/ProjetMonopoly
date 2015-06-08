@@ -10,7 +10,7 @@ public class Joueur {
 	private ArrayList<Gare> _gares = new ArrayList<Gare>();
 	private Carreau _positionCourante;
 	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
-
+ 
     public Joueur(String _nomJoueur, Monopoly _monopoly, Carreau _positionCourante) {
         this._nomJoueur = _nomJoueur;
         this._monopoly = _monopoly;
@@ -74,5 +74,11 @@ public class Joueur {
     public void setProprietesAConstruire(ArrayList<ProprieteAConstruire> _proprietesAConstruire) {
         this._proprietesAConstruire = _proprietesAConstruire;
     }
+    
+    public boolean joueurVie(int _cash){
+        return _cash>=0;
+        
+    }
+    test caca 
         
 }
