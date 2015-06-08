@@ -148,7 +148,7 @@ public class Monopoly {
     /**
      * @return the Joueurs
      */
-    private LinkedList<Joueur> getJoueurs() {
+    public LinkedList<Joueur> getJoueurs() {
         return Joueurs;
     }
 
@@ -162,7 +162,7 @@ public class Monopoly {
     /**
      * @return the Carreau
      */
-    private HashMap<Integer, Carreau> getCarreau() {
+    public HashMap<Integer, Carreau> getCarreau() {
         return Carreau;
     }
 

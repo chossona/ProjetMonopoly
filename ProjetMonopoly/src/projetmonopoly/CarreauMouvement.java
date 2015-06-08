@@ -6,5 +6,10 @@ public class CarreauMouvement extends CarreauAction {
         super(_numero, _nomCarreau, _monopoly);
     }
     
-    
+    @Override
+    public void action(Joueur j){
+        j.setPositionCourante(this.getMonopoly().getCarreau().get(10));
+        
+        
+    }
 }
