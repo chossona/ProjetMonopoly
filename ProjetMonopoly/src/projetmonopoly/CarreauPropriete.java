@@ -53,6 +53,12 @@ public abstract class CarreauPropriete extends Carreau {
     private void setLoyerBase(int _loyerBase) {
         this._loyerBase = _loyerBase;
     }
+    
+    
+    @Override
+    public void action(Joueur j){
+        
+    }
 }
 
    

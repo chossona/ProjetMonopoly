@@ -316,5 +316,9 @@ public class Monopoly {
     public ArrayList<Carreau> getCarreau() {
         return carreau;
     }
+    public void InitialiseCartes(){
+    
+    
+    }
 
 }

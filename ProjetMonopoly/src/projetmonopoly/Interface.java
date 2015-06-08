@@ -33,19 +33,31 @@ public class Interface {
     public void setMonopoly(Monopoly _monopoly) {
         this._monopoly = _monopoly;
     }
-    public void AfficheInfos (Joueur j){
-        System.out.println("Infos joueur " +j.getNomJoueur()+" :");
-        System.out.println("Ca$h : " + j.getCash());
+   public void afficherInfos(Joueur j) {
 
-        for (Compagnie compagnie : j.getCompagnies()){
-      //      System.out.println(compagnie.);
-        
-        }
-           
-          
-                    
-                       //     j.getGares()
-                          //          j.getPositionCourante()
-                                         //   j.getProprietesAConstruire()
-                    }
+System.out.println("nom joueur : " + j.getNomJoueur());
+
+System.out.println("argent joueur : " + j.getCash());
+
+System.out.println("position joueur : " + j.getPositionCourante());
+
+for (Compagnie compagnies : j.getCompagnies()) {
+
+System.out.println("compagnies joueur" + compagnies);
+
+}
+
+for (ProprieteAConstruire PAC : j.getProprietesAConstruire()) {
+
+System.out.println("Propriétés joueur : " + PAC);
+
+}
+
+for (Gare gare : j.getGares()) {
+
+System.out.println("Gares joueur : " + gare);
+
+}
+
+}
 }
