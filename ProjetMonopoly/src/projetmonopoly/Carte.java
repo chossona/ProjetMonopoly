@@ -11,8 +11,16 @@ package projetmonopoly;
  * @author chossona
  */
 public class Carte {
-    
+    private String nomCarte;
+    public int numCarte;
     public void ActionCarte() {
         
+    }
+
+    /**
+     * @return the numCarte
+     */
+    public int getNumCarte() {
+        return numCarte;
     }
 }
