@@ -79,9 +79,7 @@ public class Joueur {
         return _cash>=0;
         
     }
-    public void caca(){
-        
-    }
+
            
         
 }
