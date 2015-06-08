@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -24,13 +24,12 @@ public class Monopoly {
     private int d1;
     private int d2;
     private Interface interf;
-    public LinkedList<Carte> carteChance;
-    public LinkedList<Carte> carteCaisse;
+    public ArrayList<Carte> carteChance = new ArrayList<Carte>();
+    public ArrayList<Carte> carteCaisse = new ArrayList<Carte>();
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
     }
-
     private void buildGamePlateau(String dataFilename) {
 
         try {
@@ -234,7 +233,7 @@ public class Monopoly {
             b = false;
             for (int j = 0; j < Noms.size() - 1; j++) {
 
-                if (Noms.get(j).getCash() >= Noms.get(j++).getCash()) {
+                if (Noms.get(j).getCash() > Noms.get(j++).getCash()) {
                     b = true;
 
                     saveNomsJoueur = Noms.get(j).getNomJoueur();//svg du joueur j
@@ -278,30 +277,7 @@ public class Monopoly {
     /**
      * @return the carteChance
      */
-    public LinkedList<Carte> getCarteChance() {
-        return carteChance;
-    }
-
-    /**
-     * @param carteChance the carteChance to set
-     */
-    public void setCarteChance(LinkedList<Carte> carteChance) {
-        this.carteChance = carteChance;
-    }
-
-    /**
-     * @return the carteCaisse
-     */
-    public LinkedList<Carte> getCarteCaisse() {
-        return carteCaisse;
-    }
-
-    /**
-     * @param carteCaisse the carteCaisse to set
-     */
-    public void setCarteCaisse(LinkedList<Carte> carteCaisse) {
-        this.carteCaisse = carteCaisse;
-    }
+    
 
     /**
      * @return the groupes
@@ -343,28 +319,35 @@ public class Monopoly {
                 String caseType = data.get(i)[0];
                 if (caseType.compareTo("Prison") == 0) {
                     System.out.println(data.get(i)[0]);
-
+                   
             
                            Carte carte = new Carte(
                            Integer.parseInt(data.get(i)[2]),
                            data.get(i)[1],
                            b);
                            
-                           if(b){getCarteChance().add(carte);}
-                           else{getCarteCaisse().add(carte);}
-                
+                          
+                       
+
+                           
+                           if(b){
+                                   
+                               getCarteChance().add(carte);
+                           }
+                           else{getCarteCaisse().add(i,carte);}
+                 
 
                 } else if (caseType.compareTo("Déplacer") == 0) {
                     System.out.println(data.get(i)[0]);
-                    CarteDeplacer deplacer = new CarteDeplacer(//
+                    CarteDeplacer deplacer = new CarteDeplacer(
                               Integer.parseInt(data.get(i)[2]),
                              data.get(i)[1],
                               b,
                               Integer.parseInt(data.get(i)[3])
                     );
                            
-                           if(b){getCarteChance().add(deplacer);}
-                           else{getCarteCaisse().add(deplacer);}
+                           if(b){getCarteChance().add(i,deplacer);}
+                           else{getCarteCaisse().add(i,deplacer);}
 
                 } else if (caseType.compareTo("Pargent") == 0) {
                     System.out.println(data.get(i)[0]);
@@ -376,48 +359,76 @@ public class Monopoly {
                            b,
                            Integer.parseInt(data.get(i)[3]));
                            
-                          if(b){getCarteChance().add(carteArgent);}
-                           else{getCarteCaisse().add(carteArgent);}
+                           if(b){getCarteChance().add(i,carteArgent);}
+                           else{getCarteCaisse().add(i,carteArgent);}
 
                 } else if (caseType.compareTo("Voyager") == 0) {
                     System.out.println(data.get(i)[0]);
                     
-                    CarteVoyage carteVoyage = new CarteVoyage(
-                            Integer.parseInt(data.get(i)[1]),
-                            data.get(i)[2],
-                            this);
-                    getCarreau().add(carreauTirage);
+                    CarteVoyager carteVoyager = new CarteVoyager(//int numCarte, String nomCarte, boolean b,Carreau carreau
+                            Integer.parseInt(data.get(i)[2]),
+                           data.get(i)[1],
+                           b,
+                            this.carreau.get(Integer.parseInt(data.get(i)[3])));
+                  
+                           if(b){getCarteChance().add(i,carteVoyager);}
+                           else{getCarteCaisse().add(i,carteVoyager);}
+                }
+                
 
-                } else if (caseType.compareTo("CA") == 0) {
+                else if (caseType.compareTo("Rargent") == 0) {
                     System.out.println(data.get(i)[0]);
-                    CarreauArgent carreauArgent = new CarreauArgent(
-                            Integer.parseInt(data.get(i)[1]),
-                            data.get(i)[2],
-                            this,
-                            Integer.parseInt(data.get(i)[3]));
-                    getCarreau().add(carreauArgent);
-
-                } else if (caseType.compareTo("CM") == 0) {
-                    System.out.println(data.get(i)[0]);
-                    CarreauMouvement carreauMouvement = new CarreauMouvement(
-                            Integer.parseInt(data.get(i)[1]),
-                            data.get(i)[2],
-                            this);
-                    getCarreau().add(carreauMouvement);
+                    
+                    RecevoirArgent recevoirArgent = new RecevoirArgent(//int numCarte, String nomCarte, boolean b,int argent
+                             Integer.parseInt(data.get(i)[2]),
+                           data.get(i)[1],
+                           b,
+                           Integer.parseInt(data.get(i)[3]));
+                  
+                           if(b){getCarteChance().add(i,recevoirArgent);}
+                           else{getCarteCaisse().add(i,recevoirArgent);}
 
                 } else {
-                    System.err.println("[buildGamePleateau()] : Invalid Data type");
+                    System.err.println("[buildCartes()] : Invalid Data type");
 
                 }
 
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("[buildGamePlateau()] : File is not found!");
+            System.err.println("[buildCartes()] : File is not found!");
         } catch (IOException e) {
-            System.err.println("[buildGamePlateau()] : Error while reading file!");
+            System.err.println("[buildCarte()] : Error while reading file!");
         }
 
 }
 
+    /**
+     * @return the carteChance
+     */
+    public ArrayList<Carte> getCarteChance() {
+        return carteChance;
+    }
+
+    /**
+     * @param carteChance the carteChance to set
+     */
+    public void setCarteChance(ArrayList<Carte> carteChance) {
+        this.carteChance = carteChance;
+    }
+
+    /**
+     * @return the carteCaisse
+     */
+    public ArrayList<Carte> getCarteCaisse() {
+        return carteCaisse;
+    }
+
+    /**
+     * @param carteCaisse the carteCaisse to set
+     */
+    public void setCarteCaisse(ArrayList<Carte> carteCaisse) {
+        this.carteCaisse = carteCaisse;
+    }
+      
 }

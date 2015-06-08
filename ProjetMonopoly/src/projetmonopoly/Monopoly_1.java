@@ -7,7 +7,7 @@ public class Monopoly_1 {
 	private int _nbMaisons = 32;
 	private int _nbHotels = 12;
 	private Carreau _carreaux;
-	private ArrayList<Joueur> _joueurs = new ArrayList<Joueur>();
+	private ArrayList<Joueur> _joueurs;
 	public Interface _interface_3;
         private LinkedList<Carte> carteChance;
         private LinkedList<Carte> carteCaisse;

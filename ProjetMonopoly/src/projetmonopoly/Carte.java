@@ -11,9 +11,9 @@ package projetmonopoly;
  * @author chossona
  */
 public class Carte {
-    private String nomCarte;
-    private  int numCarte;
-    private boolean chance;
+    public String nomCarte;
+    public  int numCarte;
+    public boolean chance;
 
     public void ActionCarte() {
         
@@ -30,5 +30,40 @@ public Carte(int numCarte, String nomCarte, boolean b) {
      */
     public int getNumCarte() {
         return numCarte;
+    }
+
+    /**
+     * @return the nomCarte
+     */
+    public String getNomCarte() {
+        return nomCarte;
+    }
+
+    /**
+     * @param nomCarte the nomCarte to set
+     */
+    public void setNomCarte(String nomCarte) {
+        this.nomCarte = nomCarte;
+    }
+
+    /**
+     * @param numCarte the numCarte to set
+     */
+    public void setNumCarte(int numCarte) {
+        this.numCarte = numCarte;
+    }
+
+    /**
+     * @return the chance
+     */
+    public boolean isChance() {
+        return chance;
+    }
+
+    /**
+     * @param chance the chance to set
+     */
+    public void setChance(boolean chance) {
+        this.chance = chance;
     }
 }

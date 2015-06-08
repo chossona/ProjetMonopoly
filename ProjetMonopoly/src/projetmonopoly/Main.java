@@ -17,9 +17,12 @@ public class Main {
         inter.setMonopoly(m);
         m.InitialiseInterface(inter);
         
-        m.InitialiseCartes("/users/info/etu-s2/chossona/dataCartes.txt",true);//initialise carte chance
-
+        m.InitialiseCartes("/users/info/etu-s2/chossona/dataCartesChances.txt",true);//initialise carte chance
+        
+        m.InitialiseCartes("/users/info/etu-s2/chossona/dataCartesCaisses.txt",false);
+        
         m.InitialiserPartie();//initailise joueurs
+        m.Jouer();
 
     }
 
