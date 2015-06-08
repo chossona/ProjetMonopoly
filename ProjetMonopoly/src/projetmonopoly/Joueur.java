@@ -10,8 +10,13 @@ public class Joueur {
 	private ArrayList<Gare> _gares = new ArrayList<Gare>();
 	private Carreau _positionCourante;
 	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
-        public int tempsPrison; 
+
+        private int tempsPrison; 
      public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
+
+ 
+ 
+
         this._nomJoueur = _nomJoueur;
         this._cash = _cash;
         this._monopoly = _monopoly;
@@ -78,6 +83,7 @@ public class Joueur {
         this._proprietesAConstruire = _proprietesAConstruire;
     }
 
+
     /**
      * @return the tempsPrison
      */
@@ -91,5 +97,12 @@ public class Joueur {
     public void setTempsPrison(int tempsPrison) {
         this.tempsPrison = tempsPrison;
     }
+
+    
+    public boolean joueurVie(int _cash){
+        return _cash>=0;
         
+    }
+
+
 }
