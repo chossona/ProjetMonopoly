@@ -74,8 +74,8 @@ public class Monopoly {
 
     public void SetDés() {
         Random x = new Random();
-        setD1(x.nextInt(6) + 1);
-        setD2(x.nextInt(6) + 1);
+        setD1(x.nextInt(6));
+        setD2(x.nextInt(6));
     }
 
     /**

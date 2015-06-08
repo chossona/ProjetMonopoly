@@ -36,4 +36,5 @@ public abstract class Carreau {
         this.monopoly = _monopoly;
     }
 
+
 }
