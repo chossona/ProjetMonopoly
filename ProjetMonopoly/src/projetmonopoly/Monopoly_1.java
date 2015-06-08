@@ -65,5 +65,6 @@ public class Monopoly_1 {
     public LinkedList<Carte> getCarteCaisse() {
         return carteCaisse;
     }
-        
+    
+ 
 }

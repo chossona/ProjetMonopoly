@@ -103,6 +103,9 @@ public class Joueur {
         return _cash>=0;
         
     }
+    
+    
+    }
 
 
 }

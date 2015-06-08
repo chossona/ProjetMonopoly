@@ -168,7 +168,7 @@ public class Monopoly {
         Random x = new Random();
         setD1(x.nextInt(6) + 1);
         setD2(x.nextInt(6) + 1);
-    }int cashj = j.getCash();
+    }
 
     /**
      * @return the d1
@@ -320,5 +320,15 @@ public class Monopoly {
     
     
     }
-
+       public void lancerDésAvancer(Joueur j){
+        SetDés();
+        int num=j.getPositionCourante().getNumero()+getD1()+getD2();
+        j.getPositionCourante().setNumero(num);
+        
+        interf.afficherInfos(j);
+        interf.afficherDés(this);
+        interf.afficherInfos((ProprieteAConstruire) j.getPositionCourante());
+        
+        
+    }
 }

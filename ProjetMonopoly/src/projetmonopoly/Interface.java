@@ -75,4 +75,11 @@ System.out.println("Gares joueur : " + gare);
    public boolean reponse(){
        return true;
    }
+   
+   public void afficherDés(Monopoly monopoly){
+       System.out.println("Dé n°1 : "+monopoly.getD1());
+        System.out.println("Dé n°2 : "+monopoly.getD2());
+        System.out.println("Total : "+monopoly.getD1()+monopoly.getD2());
+       
+   }
 }

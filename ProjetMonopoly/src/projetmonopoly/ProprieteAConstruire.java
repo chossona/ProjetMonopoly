@@ -74,7 +74,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
     }
 
     public void achatPropriete(Joueur j) {
-        ;
+        
         
         if (this.getPrixAchat()<= j.getCash()){
            inter.afficher("Voulez vous acheter la propriété ?");
@@ -82,13 +82,13 @@ public class ProprieteAConstruire extends CarreauPropriete {
                j.setCash(j.getCash()-this.getPrixAchat());
                this.setProprietaire(j);
            }
-            inter.afficherInfos((ProprieteAConstruire)j.getPositionCourante());
+            inter.afficherInfos(this);
             
         }
         else{
             inter.afficher("Vous n'avez pas assez de Cash");
         }
-        inter.afficherInfos(this);
+        
     }
    
 }
