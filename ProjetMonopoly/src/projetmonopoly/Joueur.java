@@ -79,6 +79,9 @@ public class Joueur {
         return _cash>=0;
         
     }
-    test caca 
+    public void caca(){
+        
+    }
+           
         
 }
