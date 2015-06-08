@@ -9,7 +9,7 @@ public class CarreauMouvement extends CarreauAction {
     @Override
     public void action(Joueur j){
         j.setPositionCourante(this.getMonopoly().getCarreau().get(10));
-        
+        j.setTempsPrison(1);
         
     }
 }
