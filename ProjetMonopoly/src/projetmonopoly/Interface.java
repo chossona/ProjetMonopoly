@@ -1,5 +1,6 @@
 package projetmonopoly;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import sun.org.mozilla.javascript.ast.Loop;
 
@@ -208,5 +209,23 @@ public class Interface {
             
         }
         System.out.println(ligne);
+    }
+    
+    public void demandeConstruction(ArrayList<ProprieteAConstruire> Prop){
+        System.out.println("Voici les endroits où vous pouvez construire");
+        System.out.print(Prop.toString());
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Où voulez vous construire ? Ecrire '69' pour arrêter");
+         int  x;
+         x=sc.nextInt();
+         if (69==x){
+             System.out.println("Vous avez arrêté de construire");
+             
+         }
+         else {
+             System.out.println("Vous avez décidé de construire sur le terrain"+Prop.get(x));     }
+         
+        
+         
     }
 }
