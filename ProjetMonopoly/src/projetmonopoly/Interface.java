@@ -77,7 +77,9 @@ public class Interface {
         System.out.println();
         System.out.println("Nom carreau : " + prop.getNomCarreau());
         System.out.println("Prix carreau : " + prop.getPrixAchat());
-        System.out.println("Propiétaire carreau : " + prop.getProprietaire());
+        String proprietaire = "Aucun Propriétaire";
+        if (!(prop.getProprietaire() ==null )){ proprietaire = prop.getProprietaire().getNomJoueur();}
+        System.out.println("Propiétaire carreau : " + proprietaire);
         System.out.println("Groupe carreau : " + prop.getGroupePropriete().getCouleur().name());
         System.out.println("Maison carreau : " + prop.getNb_Maisons());
         System.out.println("Hotel carreau : " + prop.getNb_Hotels());
@@ -98,9 +100,10 @@ public class Interface {
         System.out.println("Non : 2");
         System.out.println();
         while (1 == 1) {
-            if (sc.nextInt() == 1) {
+            String a = sc.next();
+            if ("1".equals(a)) {
                 return true;
-            } else if (sc.nextInt() == 2) {
+            } else if ("2".equals(a)) {
                 return false;
             } else {
                 System.out.println("Mauvaise saisie, recommencer (1/2)  :");
@@ -199,7 +202,7 @@ public class Interface {
             System.out.println(contourExt);
             System.out.println(afficherLigneText("**Joueur Present : **"));
             for (int i =0; i<c.joueurPresent().size();i++){
-            System.out.println(afficherLigneText("  -"+c.joueurPresent().get(i).getNomJoueur()));
+            System.out.println(afficherLigneText("  -"+c.joueurPresent().get(i).getNomJoueur() + ' '+c.joueurPresent().get(i).getCash() + "€"));
             }
             System.out.println(contourExt);
             

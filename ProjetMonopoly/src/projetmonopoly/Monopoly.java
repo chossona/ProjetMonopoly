@@ -454,7 +454,7 @@ public class Monopoly {
         int i =0;
         while (!fin_du_jeu()) {
             position = this.lancerDésAvancer(this.getJoueurs().get(i));
-            position = position;
+            position = position-1;
             this.carreau.get(position);
             
                 
