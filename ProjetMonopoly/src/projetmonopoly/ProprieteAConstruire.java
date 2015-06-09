@@ -74,10 +74,10 @@ public class ProprieteAConstruire extends CarreauPropriete {
     }
 
    public int calculLoyerPropriété() {
-        return 3;
+        return 50;
     }
 
-    public void achatPropriete(Joueur j) {
+    protected void achatPropriete(Joueur j) {
 
         if (this.getPrixAchat() <= j.getCash()) {
             this.getMonopoly().getInterf().afficher("Voulez vous acheter la propriété ?");
@@ -110,7 +110,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
         }
     }
 
-    public void payerLoyer(Joueur j) {
+    protected void payerLoyer(Joueur j) {
         this.getProprietaire().setCash(this.getProprietaire().getCash() + this.calculLoyerPropriété());
         j.setCash(j.getCash() - this.calculLoyerPropriété());
     }

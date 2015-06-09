@@ -25,6 +25,7 @@ public class Main {
         
         m.InitialiserPartie();//initailise joueurs
         m.Jouer();
+        
 
     }
 

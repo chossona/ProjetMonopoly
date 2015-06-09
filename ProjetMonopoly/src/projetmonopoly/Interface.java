@@ -1,6 +1,7 @@
 package projetmonopoly;
 
 import java.util.Scanner;
+import sun.org.mozilla.javascript.ast.Loop;
 
 public class Interface {
 
@@ -35,7 +36,7 @@ public class Interface {
     }
 
     public void afficherInfos(Joueur j) {
-
+        System.out.println("*****************************************************************************************************************");
         System.out.println("nom joueur : " + j.getNomJoueur());
 
         System.out.println("argent joueur : " + j.getCash());
@@ -62,16 +63,26 @@ public class Interface {
 
             }
         }
-         System.out.println();
+            System.out.println("*****************************************************************************************************************");
+        System.out.println();
+        System.out.println();
+        
     }
 
     public void afficherInfos(ProprieteAConstruire prop) {
+        System.out.println("*****************************************************************************************************************");
+        System.out.println("Information Propriété : ");
+        System.out.println("*****************************************************************************************************************");
+        System.out.println();
         System.out.println("Nom carreau : " + prop.getNomCarreau());
         System.out.println("Prix carreau : " + prop.getPrixAchat());
         System.out.println("Propiétaire carreau : " + prop.getProprietaire());
         System.out.println("Groupe carreau : " + prop.getGroupePropriete());
         System.out.println("Maison carreau : " + prop.getNb_Maisons());
         System.out.println("Hotel carreau : " + prop.getNb_Hotels());
+         System.out.println();
+        System.out.println("*****************************************************************************************************************");
+
     }
 
     public void afficher(String s) {
@@ -80,21 +91,39 @@ public class Interface {
     ;
    
    public boolean reponse() {
-        return true;
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Oui : 1");
+        System.out.println("Non : 2");
+        System.out.println();
+        while (1 == 1) {
+            if (sc.nextInt() == 1) {
+                return true;
+            } else if (sc.nextInt() == 2) {
+                return false;
+            } else {
+                System.out.println("Mauvaise saisie, recommencer (1/2)  :");
+            }
+        }
     }
 
-    public void afficherDés(int d1,int d2) {
+    public void afficherDés(int d1, int d2) {
+        System.out.println();
         System.out.println("Dé n°1 : " + d1);
         System.out.println("Dé n°2 : " + d2);
+        System.out.println();
 
     }
 
     public void EstMort(Joueur j) {
+        System.out.println();
         System.out.println("joueur : " + j.getNomJoueur() + "est éliminé");
+        System.out.println();
     }
 
     public void AGagner(Joueur j) {
-
-        System.out.println("Le joueur : " + j.getNomJoueur() + "a gagné");
+System.out.println();
+        System.out.println("Le joueur : " + j.getNomJoueur() + " a gagné");
+        System.out.println();
     }
 }
