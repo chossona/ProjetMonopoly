@@ -21,6 +21,8 @@ public class Main {
         
         m.InitialiseCartes("/users/info/etu-s2/chossona/dataCartesCaisses.txt",false);
         
+        m.initialiseTas();//melange les tas
+        
         m.InitialiserPartie();//initailise joueurs
         m.Jouer();
 

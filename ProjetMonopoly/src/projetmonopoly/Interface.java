@@ -40,25 +40,27 @@ System.out.println("nom joueur : " + j.getNomJoueur());
 System.out.println("argent joueur : " + j.getCash());
 
 System.out.println("position joueur : " + j.getPositionCourante());
+if (j.getCompagnies()!=null){
+    for (Compagnie compagnies : j.getCompagnies()) {
 
-for (Compagnie compagnies : j.getCompagnies()) {
+    System.out.println("compagnies joueur" + compagnies);
 
-System.out.println("compagnies joueur" + compagnies);
-
+    }
 }
+if (j.getProprietesAConstruire()!=null){
+    for (ProprieteAConstruire PAC : j.getProprietesAConstruire()) {
 
-for (ProprieteAConstruire PAC : j.getProprietesAConstruire()) {
+    System.out.println("Propriétés joueur : " + PAC);
 
-System.out.println("Propriétés joueur : " + PAC);
-
+    }
 }
-
+if (j.getProprietesAConstruire()!=null){
 for (Gare gare : j.getGares()) {
 
 System.out.println("Gares joueur : " + gare);
 
 }
-
+}
 }
    
    public void afficherInfos(ProprieteAConstruire prop){

@@ -3,26 +3,25 @@ package projetmonopoly;
 import java.util.ArrayList;
 
 public class Joueur {
-	private String _nomJoueur;
-	private int _cash;
-	private Monopoly _monopoly;
-	private ArrayList<Compagnie> _compagnies = new ArrayList<Compagnie>();
-	private ArrayList<Gare> _gares = new ArrayList<Gare>();
-	private Carreau _positionCourante;
-	private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
+	public String _nomJoueur;
+	public int _cash;
+	public Monopoly _monopoly;
+	public ArrayList<Compagnie> _compagnies = new ArrayList<>();
+	public ArrayList<Gare> _gares = new ArrayList<>();
+	public Carreau _positionCourante;
+	public ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<>();
 
-        private int tempsPrison; 
+        public int tempsPrison; 
      public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
-
- 
- 
-
+         
         this._nomJoueur = _nomJoueur;
         this._cash = _cash;
         this._monopoly = _monopoly;
         this._positionCourante = _positionCourante;
-    
         this.tempsPrison = 0;
+        this._compagnies = null;
+        this._gares = null;
+        this._proprietesAConstruire =null;
     }
         
     

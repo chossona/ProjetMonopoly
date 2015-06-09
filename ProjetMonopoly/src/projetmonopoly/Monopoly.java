@@ -17,15 +17,15 @@ import java.util.Random;
 
 public class Monopoly {
 
-    public ArrayList<Groupe> groupes = new ArrayList<Groupe>();
-    public ArrayList<Carreau> carreau = new ArrayList<Carreau>();
+    public ArrayList<Groupe> groupes = new ArrayList<>();
+    public ArrayList<Carreau> carreau = new ArrayList<>();
 
-    private LinkedList<Joueur> Joueurs;
+    private ArrayList<Joueur> Joueurs = new ArrayList<>();
     private int d1;
     private int d2;
     private Interface interf;
-    public ArrayList<Carte> carteChance = new ArrayList<Carte>();
-    public ArrayList<Carte> carteCaisse = new ArrayList<Carte>();
+    public ArrayList<Carte> carteChance = new ArrayList<>();
+    public ArrayList<Carte> carteCaisse = new ArrayList<>();
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
@@ -147,7 +147,7 @@ public class Monopoly {
     }
 
     private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException {
-        ArrayList<String[]> data = new ArrayList<String[]>();
+        ArrayList<String[]> data = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String line = null;
@@ -203,20 +203,25 @@ public class Monopoly {
     }
 
     public void InitialiserPartie() {
-        ArrayList<Joueur> noms = new ArrayList<Joueur>();
+        ArrayList<Joueur> noms = new ArrayList<>();
 
-        //Initialise Joueurs avec leurs noms 
+        //Initialise Joueur avec leurs noms 
         int nbjoueurs = this.interf.DemandeInformationsNB_Joueur();
         for (int i = 0; i < nbjoueurs; i++) {
-            Joueur j = new Joueur(this.interf.DemandeInformaionNom_Joueur(i), 0, this, this.getCarreau().get(0));
+            Joueur j = new Joueur(
+                    this.interf.DemandeInformaionNom_Joueur(i),
+                    0,
+                    this,
+                    this.getCarreau().get(0)
+            );
             noms.add(j);
         }
 
         LanceDesDepart(noms);//fait lancer les d
         noms = metDansOrdre(noms); //met dans l'ordre les joueur
-        for (Joueur nom : noms) {
-            //initialise l'argent
-            nom.setCash(1500);
+        for (int i =0;i<noms.size();i++) {
+            noms.get(i).setCash(1500); //initialise l'argent
+            this.Joueurs.add(i, noms.get(i));//met joueur dans monopoly
         }
 
     }
@@ -263,32 +268,13 @@ public class Monopoly {
         return Noms;
     }
 
-    private LinkedList<Joueur> getJoueurs() {
-        return Joueurs;
-    }
 
-    /**
-     * @param Joueurs the Joueurs to set
-     */
-    private void setJoueurs(LinkedList<Joueur> Joueurs) {
-        this.Joueurs = Joueurs;
-    }
 
-    /**
-     * @return the carteChance
-     */
-    
-
-    /**
-     * @return the groupes
-     */
     public ArrayList<Groupe> getGroupes() {
         return groupes;
     }
 
-    /**
-     * @return the carreau
-     */
+
     public ArrayList<Carreau> getCarreau() {
         return carreau;
     }
@@ -430,18 +416,25 @@ public class Monopoly {
     public void setCarteCaisse(ArrayList<Carte> carteCaisse) {
         this.carteCaisse = carteCaisse;
     }
-        public LinkedList<Carte> initialiseTas(LinkedList<Carte> carte) {
+        public void initialiseTas() {
+        this.carteCaisse = initialiseTa(this.carteCaisse);
+        this.carteChance = initialiseTa(this.carteChance);
+
+    }
+           public ArrayList<Carte> initialiseTa(ArrayList<Carte> carte) {
         Random p = new Random();
-        LinkedList<Carte> cartes = null;
+        ArrayList<Carte> cartes = null;
         int c;
+       
         for (int i = 0; i <= carte.size(); i++) {
+         
             c = p.nextInt(carte.size());
+               System.out.print(c);
             cartes.add(carte.get(c));
             carte.remove(c);
 
         }
         return cartes;
-
     }
 
     public void EstEliminé(Joueur j) {
@@ -466,4 +459,9 @@ public class Monopoly {
            
         }
     }
-}
+    public void Jouer(){
+        for (Joueur j : this.Joueurs) {
+            this.interf.afficherInfos(j);
+        }
+   
+    }}
