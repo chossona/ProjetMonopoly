@@ -19,7 +19,7 @@ public class Monopoly {
     public ArrayList<Groupe> groupes = new ArrayList<>();
     public ArrayList<Carreau> carreau = new ArrayList<>();
 
-    private ArrayList<Joueur> Joueurs = new ArrayList<>();
+    public ArrayList<Joueur> Joueurs = new ArrayList<>();
     public int d1;
     public int d2;
     private Interface interf;
@@ -460,14 +460,20 @@ public class Monopoly {
         int i =0;
         while (!fin_du_jeu()) {
             position = this.lancerDésAvancer(this.getJoueurs().get(i));
-            position = position;
+            position = position-1;
             this.carreau.get(position);
             
+                
+               
+                
+                
             this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
             this.interf.afficherInfos( this.getJoueurs().get(i));
             this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
+            getInterf().affichagePlateau();
             if (i<this.getJoueurs().size()-1){i++;}
-            else{i=0;}    
+            else{i=0;}  
+            
         }
         this.interf.AGagner(this.getJoueurs().get(0));
     }

@@ -6,6 +6,7 @@ import sun.org.mozilla.javascript.ast.Loop;
 public class Interface {
 
     private Monopoly _monopoly;
+    private final String  ligne = "______________________________________________________________________________________________________________________";
 
     public int DemandeInformationsNB_Joueur() {
         System.out.println("Saisissez le nombre de joueur");
@@ -63,10 +64,10 @@ public class Interface {
 
             }
         }
-            System.out.println("*****************************************************************************************************************");
+        System.out.println("*****************************************************************************************************************");
         System.out.println();
         System.out.println();
-        
+
     }
 
     public void afficherInfos(ProprieteAConstruire prop) {
@@ -76,11 +77,13 @@ public class Interface {
         System.out.println();
         System.out.println("Nom carreau : " + prop.getNomCarreau());
         System.out.println("Prix carreau : " + prop.getPrixAchat());
-        System.out.println("Propiétaire carreau : " + prop.getProprietaire());
+        String proprietaire = "Aucun Propriétaire";
+        if (!(prop.getProprietaire() ==null )){ proprietaire = prop.getProprietaire().getNomJoueur();}
+        System.out.println("Propiétaire carreau : " + proprietaire);
         System.out.println("Groupe carreau : " + prop.getGroupePropriete().getCouleur().name());
         System.out.println("Maison carreau : " + prop.getNb_Maisons());
         System.out.println("Hotel carreau : " + prop.getNb_Hotels());
-         System.out.println();
+        System.out.println();
         System.out.println("*****************************************************************************************************************");
 
     }
@@ -97,9 +100,10 @@ public class Interface {
         System.out.println("Non : 2");
         System.out.println();
         while (1 == 1) {
-            if (sc.nextInt() == 1) {
+            String a = sc.next();
+            if ("1".equals(a)) {
                 return true;
-            } else if (sc.nextInt() == 2) {
+            } else if ("2".equals(a)) {
                 return false;
             } else {
                 System.out.println("Mauvaise saisie, recommencer (1/2)  :");
@@ -122,23 +126,87 @@ public class Interface {
     }
 
     public void AGagner(Joueur j) {
-System.out.println();
+        System.out.println();
         System.out.println("Le joueur : " + j.getNomJoueur() + " a gagné");
         System.out.println();
     }
-    
-    public void affichagePlateau() {
-        String s = "";
-        String ligne = "_____________________________________";
-        for(Carreau c : this.getMonopoly().getCarreau()) {
-            System.out.println(ligne);
-            for (int i = 1; i<ligne.length() - c.getNomCarreau().length()-3; i++ ){
-                s= s + ' ';
-                
-            }
-            s =s + '|';
-            System.out.println("| " + c.getNomCarreau() + s);
-            System.out.println(ligne);
+
+    private String afficherLigneText(String t) {
+        
+        String txt = "|   " + t;
+        while (txt.length() < ligne.length()) {
+            txt = txt + ' ';
         }
+        txt = txt + '|';
+        return txt;
+    }
+    
+    public String couleurTexte(Carreau c){
+        if (c.getNumero() == 2 || c.getNumero() == 4){
+            return  "\u001b[35m";   //pink
+        }
+        else if (c.getNumero() == 7 || c.getNumero() == 9 || c.getNumero() == 10){
+            return "\u001B[36m"; //cyan
+        }
+        else if (c.getNumero() == 12 || c.getNumero() == 14 || c.getNumero() == 15){
+            return "\u001B[35m"; //violet
+        }
+        else if (c.getNumero() == 17 || c.getNumero() == 19 || c.getNumero() == 20){
+               return "\u001b[30m";                     //orange
+        }
+        else if (c.getNumero() == 22 || c.getNumero() == 24 || c.getNumero() == 25){
+            return "\u001B[31m"; //rouge
+        }
+        else if (c.getNumero() == 27 || c.getNumero() == 29 || c.getNumero() == 30){
+            return "\u001B[33m"; //yellow
+        }
+        else if (c.getNumero() == 32 || c.getNumero() == 33 || c.getNumero() == 35){
+            return "\u001B[32m"; //green
+        }
+        else if (c.getNumero() == 38 || c.getNumero() == 40){
+            return "\u001B[34m"; //bleu
+        }
+        else if (c.getNumero() == 11 || c.getNumero() == 31 || c.getNumero() == 21 || c.getNumero() == 29 || c.getNumero() == 6 || c.getNumero() == 16 || c.getNumero() == 26 || c.getNumero() == 36){
+           return    "\u001B[30m"; // black                
+        }
+        else {
+                   return "\u001b[1m";                 //idk
+        }
+        
+    }
+
+    public void affichagePlateau() {
+
+        
+
+        String contourExt = "|";
+
+        while (contourExt.length()
+                < ligne.length()) {
+            contourExt = contourExt + ' ';
+        }
+        contourExt = contourExt + '|';
+
+        
+        
+        for (Carreau c: this.getMonopoly().getCarreau()) {
+            System.out.println(ligne);
+            String s = "";
+            for (int i = 1; i < ligne.length() - c.getNomCarreau().length() - 1; i++) {
+                s = s + ' ';
+
+            }
+            s = s + '|';
+            System.out.println( "| "+ couleurTexte(c) + c.getNomCarreau() + s+"\u001b[0m");
+            System.out.println(ligne);
+            System.out.println(contourExt);
+            System.out.println(afficherLigneText("**Joueur Present : **"));
+            for (int i =0; i<c.joueurPresent().size();i++){
+            System.out.println(afficherLigneText("  -"+c.joueurPresent().get(i).getNomJoueur() + ' '+c.joueurPresent().get(i).getCash() + "€"));
+            }
+            System.out.println(contourExt);
+            
+        }
+        System.out.println(ligne);
     }
 }
