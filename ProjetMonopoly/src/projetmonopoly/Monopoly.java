@@ -19,7 +19,7 @@ public class Monopoly {
     public ArrayList<Groupe> groupes = new ArrayList<>();
     public ArrayList<Carreau> carreau = new ArrayList<>();
 
-    private ArrayList<Joueur> Joueurs = new ArrayList<>();
+    public ArrayList<Joueur> Joueurs = new ArrayList<>();
     public int d1;
     public int d2;
     private Interface interf;
@@ -160,7 +160,7 @@ public class Monopoly {
     }
 
     public Joueur getJoueur(int j) {
-        return Joueurs.get(j);
+        return getJoueurs().get(j);
     }
 
     public void SetDés() {
@@ -212,7 +212,7 @@ public class Monopoly {
         noms = metDansOrdre(noms); //met dans l'ordre les joueur
         for (int i = 0; i < noms.size(); i++) {
             noms.get(i).setCash(1500); //initialise l'argent
-            this.Joueurs.add(i, noms.get(i));//met joueur dans monopoly
+            this.getJoueurs().add(i, noms.get(i));//met joueur dans monopoly
         }
 
     }
@@ -435,25 +435,25 @@ public class Monopoly {
             j.getCompagnies().removeAll(carreau);
             j.getGares().removeAll(carreau);
 
-            this.Joueurs.remove(j);
+            this.getJoueurs().remove(j);
 
         }
     }
 
     public boolean fin_du_jeu() {
-        return (this.Joueurs.size()==1);
+        return (this.getJoueurs().size()==1);
     }
 
     public void Jouer() {
        
-        for (Joueur j : this.Joueurs) {
+        for (Joueur j : this.getJoueurs()) {
            
             this.interf.afficherInfos(j);
         }
         int position;
         int i =0;
         while (!fin_du_jeu()) {
-            position = this.lancerDésAvancer(this.Joueurs.get(i));
+            position = this.lancerDésAvancer(this.getJoueurs().get(i));
             position = position;
             this.carreau.get(position);
             
@@ -461,12 +461,21 @@ public class Monopoly {
                
                 
                 
-            this.Joueurs.get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
-            this.interf.afficherInfos( this.Joueurs.get(i));
-            this.carreau.get(position).action(this.Joueurs.get(i));//appelle l'action du carreau2
-            if (i<this.Joueurs.size()-1){i++;}
-            else{i=0;}    
+            this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
+            this.interf.afficherInfos( this.getJoueurs().get(i));
+            this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
+            getInterf().affichagePlateau();
+            if (i<this.getJoueurs().size()-1){i++;}
+            else{i=0;}  
+            
         }
-        this.interf.AGagner(this.Joueurs.get(0));
+        this.interf.AGagner(this.getJoueurs().get(0));
+    }
+
+    /**
+     * @return the Joueurs
+     */
+    public ArrayList<Joueur> getJoueurs() {
+        return Joueurs;
     }
 }

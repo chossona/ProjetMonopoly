@@ -1,5 +1,7 @@
 package projetmonopoly;
 
+import java.util.ArrayList;
+
 public abstract class Carreau {
 
     public int numero;
@@ -38,6 +40,15 @@ public abstract class Carreau {
 
     public void action(Joueur j) {
         
+    }
+    public ArrayList<Joueur> joueurPresent() {
+        ArrayList listjoueurcase = new ArrayList<>();
+        for (Joueur j : this.getMonopoly().getJoueurs()){
+            if (j.getPositionCourante() == this){
+                listjoueurcase.add(j);
+            }
+        }
+        return listjoueurcase;
     }
 
 }
