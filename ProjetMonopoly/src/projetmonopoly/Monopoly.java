@@ -423,13 +423,13 @@ public class Monopoly {
     }
            public ArrayList<Carte> initialiseTa(ArrayList<Carte> carte) {
         Random p = new Random();
-        ArrayList<Carte> cartes = null;
+        ArrayList<Carte> cartes = new ArrayList<>();
+   
         int c;
        
         for (int i = 0; i <= carte.size(); i++) {
          
             c = p.nextInt(carte.size());
-               System.out.print(c);
             cartes.add(carte.get(c));
             carte.remove(c);
 
