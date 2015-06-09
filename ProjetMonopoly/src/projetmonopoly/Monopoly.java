@@ -491,7 +491,7 @@ public class Monopoly {
     public void setJoueurs(ArrayList<Joueur> Joueurs) {
         this.Joueurs = Joueurs;
     }
-    public int getNbHotels(ArrayList<Joueur> joueurs){
+    public int getNbHotels(){
         int nbHotels=0;
         for (Joueur joueur : this.Joueurs) {
             
@@ -501,7 +501,7 @@ public class Monopoly {
         }
         return nbHotels;
     }
-    public int getNbMaisons(ArrayList<Joueur> joueurs){
+    public int getNbMaisons(){
         int nbMaisons=0;
         for (Joueur joueur : this.Joueurs) {
             
