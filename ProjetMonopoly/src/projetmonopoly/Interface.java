@@ -77,7 +77,7 @@ public class Interface {
         System.out.println("Nom carreau : " + prop.getNomCarreau());
         System.out.println("Prix carreau : " + prop.getPrixAchat());
         System.out.println("Propiétaire carreau : " + prop.getProprietaire());
-        System.out.println("Groupe carreau : " + prop.getGroupePropriete());
+        System.out.println("Groupe carreau : " + prop.getGroupePropriete().getCouleur().name());
         System.out.println("Maison carreau : " + prop.getNb_Maisons());
         System.out.println("Hotel carreau : " + prop.getNb_Hotels());
          System.out.println();
@@ -125,5 +125,20 @@ public class Interface {
 System.out.println();
         System.out.println("Le joueur : " + j.getNomJoueur() + " a gagné");
         System.out.println();
+    }
+    
+    public void affichagePlateau() {
+        String s = "";
+        String ligne = "_____________________________________";
+        for(Carreau c : this.getMonopoly().getCarreau()) {
+            System.out.println(ligne);
+            for (int i = 1; i<ligne.length() - c.getNomCarreau().length()-3; i++ ){
+                s= s + ' ';
+                
+            }
+            s =s + '|';
+            System.out.println("| " + c.getNomCarreau() + s);
+            System.out.println(ligne);
+        }
     }
 }

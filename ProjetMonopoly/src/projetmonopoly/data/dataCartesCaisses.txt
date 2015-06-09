@@ -1,0 +1,16 @@
+Prison;Vous êtes libéré de prison.Cette carte peut être conservé jusqu'à ce qu'elle soit utilisé;17
+Pargent;Payer une amende de 10€;18;10
+Rargent;C'est votre anniversaire. Chaque joueur doit vous donner 10€;19;10
+Rargent;Erreur de la banque en votre faveur. Recevez 200€;20;200
+Voyager;Retournez a Belleville;21;1
+Pargent;Payez la note du médecin:50€;22;50
+Rargent;Les contributions vous remboursent la somme de 20€;23;20
+Pargent;Payez à l hopital 100€;24;100
+Rargent;Vous héritez : 100€;25;100
+Voyager;Allez en prison. Avancez tout droit en prison. Ne passez pas par la case Depart. Ne recevez pas 200€;26;30
+Pargent;Payez votre Police d Assurance : 50€;27;50
+Rargent;La vente de votre stock vous rapporte : 50€;28;50
+Voyager;Avancez jusqu a la case Départ;29;0
+Rargent;Recevez votre intéret sur l'emprunt a 7 pour cent : 25€;30;25
+Rargent;Recevez votre revenu annuel : 100€;31;100
+Rargent;Vous avez gagne le deuxieme prix de beaute : recevez 10€;32;10
