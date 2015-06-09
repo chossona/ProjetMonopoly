@@ -14,15 +14,15 @@ public class Carte {
     public String nomCarte;
     public  int numCarte;
     public boolean chance;
+    private Monopoly monopoly;
 
-    public void ActionCarte() {
-        
-    }
-public Carte(int numCarte, String nomCarte, boolean b) {
+
+public Carte(int numCarte, String nomCarte, boolean b,Monopoly monopoly) {
     
         this.nomCarte=nomCarte;
         this.numCarte=numCarte;
         this.chance=b;
+        this.monopoly = monopoly;
     }
 
     /**
@@ -65,5 +65,36 @@ public Carte(int numCarte, String nomCarte, boolean b) {
      */
     public void setChance(boolean chance) {
         this.chance = chance;
+    }
+  
+    public void action(Joueur j,Boolean b){
+       if(this.getNumCarte()==17){
+           j.setCarte_Caisse_Prison(true);
+       }
+       
+       
+       
+    else  if(this.getNumCarte()==1){
+           j.setCarte_Chance_Prison(true);
+       }
+       
+       
+      
+      }
+    
+  
+
+    /**
+     * @return the monopoly
+     */
+    public Monopoly getMonopoly() {
+        return monopoly;
+    }
+
+    /**
+     * @param monopoly the monopoly to set
+     */
+    public void setMonopoly(Monopoly monopoly) {
+        this.monopoly = monopoly;
     }
 }

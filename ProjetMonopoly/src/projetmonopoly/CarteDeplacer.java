@@ -14,9 +14,32 @@ package projetmonopoly;
 public  class CarteDeplacer extends Carte {
 	private int carreau;
         
-        public CarteDeplacer(int numCarte, String nomCarte, boolean b,int carreau) {
-        super(numCarte, nomCarte, b);
+        public CarteDeplacer(int numCarte, String nomCarte, boolean b,int carreau, Monopoly m) {
+        super(numCarte, nomCarte, b, m);
         this.carreau = carreau;
      
-    }}
+    }
+
+
+@Override
+public void action(Joueur j,Boolean b){
+if(this.getNumCarte()==2){
+        j.setPositionCourante(this.getMonopoly().getCarreau().get(this.getMonopoly().getCarreau().indexOf(j.getPositionCourante())-this.getCarreau()));
+        }
+}
+    /**
+     * @return the carreau
+     */
+    public int getCarreau() {
+        return carreau;
+    }
+
+    /**
+     * @param carreau the carreau to set
+     */
+    public void setCarreau(int carreau) {
+        this.carreau = carreau;
+    }
+
+}
 

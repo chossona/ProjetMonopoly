@@ -11,16 +11,20 @@ public class Joueur {
 	public Carreau _positionCourante;
 	public ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<>();
         public int tempsPrison; 
+        private boolean Carte_Chance_Prison;
+        private boolean Carte_Caisse_Prison;
      public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
          
         this._nomJoueur = _nomJoueur;
         this._cash = _cash;
         this._monopoly = _monopoly;
         this._positionCourante = _positionCourante;
-        this.tempsPrison = 0;
+        this.tempsPrison = -1;
         this._compagnies = null;
         this._gares = null;
         this._proprietesAConstruire =null;
+         setCarte_Caisse_Prison(false);
+         setCarte_Chance_Prison(false);
     }
         
     
@@ -101,7 +105,35 @@ public class Joueur {
         return _cash>=0;
         
     }
+
+  
+
+    /**
+     * @param Carte_Chance_Prison the Carte_Chance_Prison to set
+     */
+    public void setCarte_Chance_Prison(boolean Carte_Chance_Prison) {
+        this.Carte_Chance_Prison = Carte_Chance_Prison;
+    }
+
+    /**
+     * @return the Carte_Caisse_Prison
+     */
+ 
+
+    /**
+     * @param Carte_Caisse_Prison the Carte_Caisse_Prison to set
+     */
+    public void setCarte_Caisse_Prison(boolean Carte_Caisse_Prison) {
+        this.Carte_Caisse_Prison = Carte_Caisse_Prison;
+    }
     
+    public int payer(int prix){
+    if(prix>this.getCash()){
+        return this.getCash();
+    }
+    this.setCash(this.getCash()-prix);
+    return prix;
+    }
     
     }
 
