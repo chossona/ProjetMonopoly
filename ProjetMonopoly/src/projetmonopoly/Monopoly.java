@@ -491,4 +491,24 @@ public class Monopoly {
     public void setJoueurs(ArrayList<Joueur> Joueurs) {
         this.Joueurs = Joueurs;
     }
+    public int getNbHotels(ArrayList<Joueur> joueurs){
+        int nbHotels=0;
+        for (Joueur joueur : this.Joueurs) {
+            
+                    for(int j=0;j<joueur.getProprietesAConstruire().size();j++){
+                      nbHotels=nbHotels+joueur.getProprietesAConstruire().get(j).getNb_Hotels();
+                    }
+        }
+        return nbHotels;
+    }
+    public int getNbMaisons(ArrayList<Joueur> joueurs){
+        int nbMaisons=0;
+        for (Joueur joueur : this.Joueurs) {
+            
+                    for(int j=0;j<joueur.getProprietesAConstruire().size();j++){
+                      nbMaisons=nbMaisons+joueur.getProprietesAConstruire().get(j).getNb_Maisons();
+                    }
+        }
+        return nbMaisons;
+    }
 }
