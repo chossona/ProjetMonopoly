@@ -17,7 +17,7 @@ public class RecevoirArgent extends Carte {
     public void action(Joueur j, Boolean b) {
         if (this.getNumCarte() == 19) {
             for (Joueur joueur : this.getMonopoly().getJoueurs()) {
-                if (Joueur != j) {
+                if (!(Joueur == j)) {
                     j.setCash(joueur.payer(10) + j.getCash());
                     if (joueur.payer(10) != 10) {
 
