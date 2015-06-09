@@ -436,7 +436,7 @@ public class Monopoly {
         }
         return cartes;
     }
-
+//
     public void EstEliminé(Joueur j) {
         if (j.joueurVie(j.getCash()) == false) {
             for (int i=0; i<=j.getProprietesAConstruire().size();i++) {
