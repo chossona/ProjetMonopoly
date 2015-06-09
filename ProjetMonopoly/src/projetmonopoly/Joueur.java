@@ -10,7 +10,6 @@ public class Joueur {
 	public ArrayList<Gare> _gares = new ArrayList<>();
 	public Carreau _positionCourante;
 	public ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<>();
-
         public int tempsPrison; 
      public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
          
