@@ -6,7 +6,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
 	private int nb_Hotels;
 	private java.util.ArrayList<Integer> _loyerMaison;
 	private Groupe _groupePropriete;
-        private Interface inter;
+      
 
     public ProprieteAConstruire(int _loyerBase, int _prixAchat, Joueur _proprietaire, int _numero, String _nomCarreau, Monopoly _monopoly,Groupe groupe,java.util.ArrayList<Integer> Lmaisons) {
         super(_loyerBase, _prixAchat, _proprietaire, _numero, _nomCarreau, _monopoly);
@@ -73,22 +73,61 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._groupePropriete = _groupePropriete;
     }
 
-    public void achatPropriete(Joueur j) {
-        
-        
-        if (this.getPrixAchat()<= j.getCash()){
-           inter.afficher("Voulez vous acheter la propriété ?");
-           if (inter.reponse()){
-               j.setCash(j.getCash()-this.getPrixAchat());
-               this.setProprietaire(j);
-           }
-            inter.afficherInfos(this);
-            
-        }
-        else{
-            inter.afficher("Vous n'avez pas assez de Cash");
-        }
-        
+   public int calculLoyerPropriété() {
+        return 3;
     }
+
+    public void achatPropriete(Joueur j) {
+
+        if (this.getPrixAchat() <= j.getCash()) {
+            this.getMonopoly().getInterf().afficher("Voulez vous acheter la propriété ?");
+            if (this.getMonopoly().getInterf().reponse()) {
+                j.setCash(j.getCash() - this.getPrixAchat());
+                this.setProprietaire(j);
+            }
+            this.getMonopoly().getInterf().afficherInfos(this);
+
+        } else {
+            this.getMonopoly().getInterf().afficher("Vous n'avez pas assez de Cash");
+        }
+
+    }
+
+    public boolean possedeCouleur(Joueur j) {
+        boolean b = true;
+        for (ProprieteAConstruire p : this.getGroupePropriete().getProprietes()) {
+            if (!(p.getProprietaire() == j)) {
+                b = false;
+            }
+        }
+        return b;
+    }
+
+    private void construire(Joueur j) {
+        if (possedeCouleur(j)) {
+           
+
+        }
+    }
+
+    public void payerLoyer(Joueur j) {
+        this.getProprietaire().setCash(this.getProprietaire().getCash() + this.calculLoyerPropriété());
+        j.setCash(j.getCash() - this.calculLoyerPropriété());
+    }
+
+    public void action(Joueur j) {
+        this.getMonopoly().getInterf().afficherInfos(this);
+        if (this.getProprietaire() == null) {
+
+            achatPropriete(j);
+        } else if (this.getProprietaire() == j) {
+            construire(j);
+        } else {
+            payerLoyer(j);
+        }
+    }
+  
+  
+    }
+
    
-}

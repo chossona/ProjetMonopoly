@@ -54,11 +54,8 @@ public abstract class CarreauPropriete extends Carreau {
         this._loyerBase = _loyerBase;
     }
     
-    
-   // @Override
-    //public void action(Joueur j){
-        
-   // }
+
+ 
 }
 
    

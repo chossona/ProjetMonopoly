@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -21,15 +20,16 @@ public class Monopoly {
     public ArrayList<Carreau> carreau = new ArrayList<>();
 
     private ArrayList<Joueur> Joueurs = new ArrayList<>();
-    private int d1;
-    private int d2;
+    public int d1;
+    public int d2;
     private Interface interf;
-    public ArrayList<Carte> carteChance = new ArrayList<>();
-    public ArrayList<Carte> carteCaisse = new ArrayList<>();
+    public LinkedList<Carte> carteChance = new LinkedList<>();
+    public LinkedList<Carte> carteCaisse = new LinkedList<>();
 
     public Monopoly(String dataFilename) {
         buildGamePlateau(dataFilename);
     }
+
     private void buildGamePlateau(String dataFilename) {
 
         try {
@@ -52,7 +52,7 @@ public class Monopoly {
                         g++;
                     }
 
-                    /*creation d'un groupe */                    if (b) {
+                    /*creation d'un groupe */ if (b) {
 
                         Groupe groupe = new Groupe(
                                 Integer.parseInt(data.get(i)[11]),
@@ -61,7 +61,7 @@ public class Monopoly {
                         getGroupes().add(groupe);
                     }
 
-         //comme dans le monopoly les propriétés d'un groupe se suivent, on sait que l'on doit ajouter la propriete sur sur dernier groupe => groupes.get(groupes.size()-1)             
+                    //comme dans le monopoly les propriétés d'un groupe se suivent, on sait que l'on doit ajouter la propriete sur sur dernier groupe => groupes.get(groupes.size()-1)             
                     //creation propriete 
                     ArrayList loyersMaisons = new ArrayList();//creation arraylist des loyers en fonction des constructions
                     for (int j = 6; j <= 10; j++) {
@@ -79,7 +79,7 @@ public class Monopoly {
 
                     //ajout d'une propriete dans groupe
                     getGroupes().get(getGroupes().size() - 1).ajouterropriete(carProp);
-             //ajout du carrreau    
+                    //ajout du carrreau    
                     //  carreau.put(1, null);  
                     getCarreau().add(carProp);
 
@@ -169,23 +169,14 @@ public class Monopoly {
         setD2(x.nextInt(6) + 1);
     }
 
-    /**
-     * @return the d1
-     */
     public int getD1() {
         return d1;
     }
 
-    /**
-     * @return the d2
-     */
     public int getD2() {
         return d2;
     }
 
-    /**
-     * @param d1 the d1 to set
-     */
     private void setD1(int d1) {
         this.d1 = d1;
     }
@@ -219,7 +210,7 @@ public class Monopoly {
 
         LanceDesDepart(noms);//fait lancer les d
         noms = metDansOrdre(noms); //met dans l'ordre les joueur
-        for (int i =0;i<noms.size();i++) {
+        for (int i = 0; i < noms.size(); i++) {
             noms.get(i).setCash(1500); //initialise l'argent
             this.Joueurs.add(i, noms.get(i));//met joueur dans monopoly
         }
@@ -268,33 +259,29 @@ public class Monopoly {
         return Noms;
     }
 
-
-
     public ArrayList<Groupe> getGroupes() {
         return groupes;
     }
 
-
     public ArrayList<Carreau> getCarreau() {
         return carreau;
     }
-    public void InitialiseCartes(){
-    
-    
-    }
-       public void lancerDésAvancer(Joueur j){
-        SetDés();
-        int num=j.getPositionCourante().getNumero()+getD1()+getD2();
-        j.getPositionCourante().setNumero(num);
-        
-        interf.afficherInfos(j);
-        interf.afficherDés(this);
-        interf.afficherInfos((ProprieteAConstruire) j.getPositionCourante());
-        
-        
+
+
+
+    public int lancerDésAvancer(Joueur j) {
+        int position;
+        SetDés();  
+        this.interf.afficherDés(this.getD1(), this.getD2());
+        position=j.getPositionCourante().getNumero()+getD1()+getD2();
+        if(position>39){
+                   position=position-40;
+                   j.setCash( j.getCash()+200);
+                }
+        return (position);
     }
 
-     public void InitialiseCartes(String dataFilename,boolean b) {
+    public void InitialiseCartes(String dataFilename, boolean b) {
 
         try {
 
@@ -305,74 +292,77 @@ public class Monopoly {
                 String caseType = data.get(i)[0];
                 if (caseType.compareTo("Prison") == 0) {
                     System.out.println(data.get(i)[0]);
-                   
-            
-                           Carte carte = new Carte(
-                           Integer.parseInt(data.get(i)[2]),
-                           data.get(i)[1],
-                           b);
-                           
-                          
-                       
 
-                           
-                           if(b){
-                                   
-                               getCarteChance().add(carte);
-                           }
-                           else{getCarteCaisse().add(i,carte);}
-                 
+                    Carte carte = new Carte(
+                            Integer.parseInt(data.get(i)[2]),
+                            data.get(i)[1],
+                            b);
+
+                    if (b) {
+
+                        getCarteChance().add(carte);
+                    } else {
+                        getCarteCaisse().add(i, carte);
+                    }
 
                 } else if (caseType.compareTo("Déplacer") == 0) {
                     System.out.println(data.get(i)[0]);
                     CarteDeplacer deplacer = new CarteDeplacer(
-                              Integer.parseInt(data.get(i)[2]),
-                             data.get(i)[1],
-                              b,
-                              Integer.parseInt(data.get(i)[3])
+                            Integer.parseInt(data.get(i)[2]),
+                            data.get(i)[1],
+                            b,
+                            Integer.parseInt(data.get(i)[3])
                     );
-                           
-                           if(b){getCarteChance().add(i,deplacer);}
-                           else{getCarteCaisse().add(i,deplacer);}
+
+                    if (b) {
+                        getCarteChance().add(i, deplacer);
+                    } else {
+                        getCarteCaisse().add(i, deplacer);
+                    }
 
                 } else if (caseType.compareTo("Pargent") == 0) {
                     System.out.println(data.get(i)[0]);
-   
-                           
-                           CarteArgent carteArgent=new CarteArgent(
-                           Integer.parseInt(data.get(i)[2]),
-                           data.get(i)[1],
-                           b,
-                           Integer.parseInt(data.get(i)[3]));
-                           
-                           if(b){getCarteChance().add(i,carteArgent);}
-                           else{getCarteCaisse().add(i,carteArgent);}
+
+                    CarteArgent carteArgent = new CarteArgent(
+                            Integer.parseInt(data.get(i)[2]),
+                            data.get(i)[1],
+                            b,
+                            Integer.parseInt(data.get(i)[3]));
+
+                    if (b) {
+                        getCarteChance().add(i, carteArgent);
+                    } else {
+                        getCarteCaisse().add(i, carteArgent);
+                    }
 
                 } else if (caseType.compareTo("Voyager") == 0) {
                     System.out.println(data.get(i)[0]);
-                    
+
                     CarteVoyager carteVoyager = new CarteVoyager(//int numCarte, String nomCarte, boolean b,Carreau carreau
                             Integer.parseInt(data.get(i)[2]),
-                           data.get(i)[1],
-                           b,
+                            data.get(i)[1],
+                            b,
                             this.carreau.get(Integer.parseInt(data.get(i)[3])));
-                  
-                           if(b){getCarteChance().add(i,carteVoyager);}
-                           else{getCarteCaisse().add(i,carteVoyager);}
-                }
-                
 
-                else if (caseType.compareTo("Rargent") == 0) {
+                    if (b) {
+                        getCarteChance().add(i, carteVoyager);
+                    } else {
+                        getCarteCaisse().add(i, carteVoyager);
+                    }
+                } else if (caseType.compareTo("Rargent") == 0) {
                     System.out.println(data.get(i)[0]);
-                    
+
                     RecevoirArgent recevoirArgent = new RecevoirArgent(//int numCarte, String nomCarte, boolean b,int argent
-                             Integer.parseInt(data.get(i)[2]),
-                           data.get(i)[1],
-                           b,
-                           Integer.parseInt(data.get(i)[3]));
-                  
-                           if(b){getCarteChance().add(i,recevoirArgent);}
-                           else{getCarteCaisse().add(i,recevoirArgent);}
+                            Integer.parseInt(data.get(i)[2]),
+                            data.get(i)[1],
+                            b,
+                            Integer.parseInt(data.get(i)[3]));
+
+                    if (b) {
+                        getCarteChance().add(i, recevoirArgent);
+                    } else {
+                        getCarteCaisse().add(i, recevoirArgent);
+                    }
 
                 } else {
                     System.err.println("[buildCartes()] : Invalid Data type");
@@ -387,48 +377,38 @@ public class Monopoly {
             System.err.println("[buildCarte()] : Error while reading file!");
         }
 
-}
+    }
 
-    /**
-     * @return the carteChance
-     */
-    public ArrayList<Carte> getCarteChance() {
+    public LinkedList<Carte> getCarteChance() {
         return carteChance;
     }
 
-    /**
-     * @param carteChance the carteChance to set
-     */
-    public void setCarteChance(ArrayList<Carte> carteChance) {
+    public void LinkedList(LinkedList<Carte> carteChance) {
         this.carteChance = carteChance;
     }
 
-    /**
-     * @return the carteCaisse
-     */
-    public ArrayList<Carte> getCarteCaisse() {
+    public LinkedList<Carte> getCarteCaisse() {
         return carteCaisse;
     }
 
-    /**
-     * @param carteCaisse the carteCaisse to set
-     */
-    public void setCarteCaisse(ArrayList<Carte> carteCaisse) {
+    public void setCarteCaisse(LinkedList<Carte> carteCaisse) {
         this.carteCaisse = carteCaisse;
     }
-        public void initialiseTas() {
+
+    public void initialiseTas() {
         this.carteCaisse = initialiseTa(this.carteCaisse);
         this.carteChance = initialiseTa(this.carteChance);
 
     }
-           public ArrayList<Carte> initialiseTa(ArrayList<Carte> carte) {
+
+    public LinkedList<Carte> initialiseTa(LinkedList<Carte> carte) {
         Random p = new Random();
-        ArrayList<Carte> cartes = new ArrayList<>();
-   
+        LinkedList<Carte> cartes = new LinkedList<>();
+
         int c;
-       
+
         for (int i = 0; i <= carte.size(); i++) {
-         
+
             c = p.nextInt(carte.size());
             cartes.add(carte.get(c));
             carte.remove(c);
@@ -436,32 +416,57 @@ public class Monopoly {
         }
         return cartes;
     }
-//
+
     public void EstEliminé(Joueur j) {
         if (j.joueurVie(j.getCash()) == false) {
-            for (int i=0; i<=j.getProprietesAConstruire().size();i++) {
+            for (int i = 0; i <= j.getProprietesAConstruire().size(); i++) {
                 j.getProprietesAConstruire().get(i).setProprietaire(null);
-                
+
             }
-            for(int i=0; i<=j.getCompagnies().size();i++) {
+            for (int i = 0; i <= j.getCompagnies().size(); i++) {
                 j.getCompagnies().get(i).setProprietaire(null);
             }
-            
-            for (int i=0; i<=j.getGares().size();i++) {
+
+            for (int i = 0; i <= j.getGares().size(); i++) {
                 j.getGares().get(i).setProprietaire(null);
             }
-            
-           j.getProprietesAConstruire().removeAll(carreau);
-           j.getCompagnies().removeAll(carreau);
-           j.getGares().removeAll(carreau);   
-           
-           this.Joueurs.remove(j);
-           
+
+            j.getProprietesAConstruire().removeAll(carreau);
+            j.getCompagnies().removeAll(carreau);
+            j.getGares().removeAll(carreau);
+
+            this.Joueurs.remove(j);
+
         }
     }
-    public void Jouer(){
+
+    public boolean fin_du_jeu() {
+        return (this.Joueurs.size()==1);
+    }
+
+    public void Jouer() {
+       
         for (Joueur j : this.Joueurs) {
+           
             this.interf.afficherInfos(j);
         }
-   
-    }}
+        int position;
+        int i =0;
+        while (!fin_du_jeu()) {
+            position = this.lancerDésAvancer(this.Joueurs.get(i));
+            position = position;
+            this.carreau.get(position);
+            
+                
+               
+                
+                
+            this.Joueurs.get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
+            this.interf.afficherInfos( this.Joueurs.get(i));
+            this.carreau.get(position).action(this.Joueurs.get(i));//appelle l'action du carreau2
+            if (i<this.Joueurs.size()-1){i++;}
+            else{i=0;}    
+        }
+        this.interf.AGagner(this.Joueurs.get(0));
+    }
+}

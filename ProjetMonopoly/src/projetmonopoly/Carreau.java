@@ -2,9 +2,9 @@ package projetmonopoly;
 
 public abstract class Carreau {
 
-    private int numero;
-    private String nomCarreau;
-    private Monopoly monopoly;
+    public int numero;
+    public String nomCarreau;
+    public Monopoly monopoly;
     
     public Carreau (int _numero, String _nomCarreau, Monopoly _monopoly) {
         this.numero= _numero;
@@ -36,5 +36,8 @@ public abstract class Carreau {
         this.monopoly = _monopoly;
     }
 
+    public void action(Joueur j) {
+        
+    }
 
 }
