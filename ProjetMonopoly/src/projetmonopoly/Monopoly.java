@@ -165,8 +165,8 @@ public class Monopoly {
 
     public void SetDés() {
         Random x = new Random();
-        setD1(x.nextInt(6));
-        setD2(x.nextInt(6));
+        setD1(x.nextInt(5)+1);
+        setD2(x.nextInt(5)+1);
     }
 
     public int getD1() {
@@ -479,7 +479,7 @@ public class Monopoly {
             this.interf.afficherInfos( this.getJoueurs().get(i));
             this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
             getInterf().affichagePlateau();
-            if (!(getD1() == getD2())){
+            if ((getD1() == getD2())){
             compteurDouble = compteurDouble+1; if(compteurDouble ==3){this.getJoueur(i).setTempsPrison(0);this.getJoueur(i).setPositionCourante(this.getCarreau().get(9));}
             if (i<this.getJoueurs().size()-1){i++;}
             else{i=0;}  
