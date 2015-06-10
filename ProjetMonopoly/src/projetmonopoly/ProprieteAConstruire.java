@@ -164,6 +164,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
     }
     
     public void construire(ProprieteAConstruire p){
+        //construction des maison
         if (p.getNb_Maisons() == 4) {
             this.setNb_Maisons(0);
             this.setNb_Hotels(1);
