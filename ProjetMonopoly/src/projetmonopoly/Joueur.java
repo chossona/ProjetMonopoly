@@ -11,8 +11,8 @@ public class Joueur {
 	public Carreau _positionCourante;
 	public ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<>();
         public int tempsPrison; 
-        private boolean Carte_Chance_Prison;
-        private boolean Carte_Caisse_Prison;
+        public boolean Carte_Chance_Prison;
+        public boolean Carte_Caisse_Prison;
      public Joueur(String _nomJoueur, int _cash, Monopoly _monopoly, Carreau _positionCourante) {
          
         this._nomJoueur = _nomJoueur;
@@ -133,6 +133,20 @@ public class Joueur {
     }
     this.setCash(this.getCash()-prix);
     return prix;
+    }
+
+    /**
+     * @return the Carte_Chance_Prison
+     */
+    public boolean getCarte_Chance_Prison() {
+        return Carte_Chance_Prison;
+    }
+
+    /**
+     * @return the Carte_Caisse_Prison
+     */
+    public boolean getCarte_Caisse_Prison() {
+        return Carte_Caisse_Prison;
     }
     
     }

@@ -228,4 +228,47 @@ public class Interface {
         
          
     }
+    public void GererPrison(int j/*entier du joueur*/ ){
+        System.out.println("temps en prison : " + this.getMonopoly().getJoueur(j));
+        System.out.println("joueur en prison : " + this.getMonopoly().getJoueur(j).getNomJoueur());
+        
+               
+           System.out.println("Vous lancez les dés pour sortir de prison");   
+        this.getMonopoly().SetDés();
+         System.out.println("Vous avez fait "+this.getMonopoly().getD1()+" et "+this.getMonopoly().getD2());   
+        if(this.getMonopoly().getD1()==this.getMonopoly().getD2()){
+           System.out.println("Vous avez fait un double vous sortez de prison");   
+           this.getMonopoly().getJoueur(j).setTempsPrison(-1);
+        }
+        else{
+          System.out.println("Vous n'avez pas fait un double vous restez de prison");  
+         this.getMonopoly().getJoueur(j).setTempsPrison(  this.getMonopoly().getJoueur(j).getTempsPrison()+1);
+                //carte chance
+                 if(this.getMonopoly().getJoueur(j).getCarte_Caisse_Prison()||this.getMonopoly().getJoueur(j).getCarte_Chance_Prison()){ 
+                  
+                    Scanner sc = new Scanner(System.in);
+                    
+                    System.out.println("Voulez vous utiliser votre carte  sortir de prison? oui/non");   
+                    if ("oui".equals(sc.nextLine())){
+                        this.getMonopoly().getJoueur(j).setTempsPrison(-1);
+                          System.out.println("Vous utiliser votre carte et sortez de prison");   
+                          if (this.getMonopoly().getJoueur(j).getCarte_Caisse_Prison()){
+                          this.getMonopoly().getJoueur(j).setCarte_Chance_Prison(false);
+                          }
+                          else{  this.getMonopoly().getJoueur(j).setCarte_Caisse_Prison(false);}
+                        
+                    }}
+                 //payer
+               
+                else if(this.getMonopoly().getJoueur(j).getTempsPrison()==2){
+                  System.out.println("Voulez devez sortir de prison nous allons prendre 50 euros sur votre si vous ne les avez pas nous vous ferons passer sur la chaise electique.");   
+                  this.getMonopoly().getJoueur(j).setTempsPrison(-1);
+                  this.getMonopoly().payer(50,this.getMonopoly().getJoueur(j));
+                  
+                }
+                }
+    }
 }
+                
+             
+

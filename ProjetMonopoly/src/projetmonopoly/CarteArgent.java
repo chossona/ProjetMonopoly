@@ -22,7 +22,7 @@ public class CarteArgent extends Carte  {
                prix=prix+proprietesAConstruire.getNb_Maisons()*40;
                prix=prix+proprietesAConstruire.getNb_Hotels()*115;
            }
-           this.payer(this.getArgent(),j);
+           this.getMonopoly().payer(this.getArgent(),j);
         }
         else if(this.getNumCarte()==5){
             int prix=0;
@@ -30,20 +30,16 @@ public class CarteArgent extends Carte  {
                prix=prix+proprietesAConstruire.getNb_Maisons()*25;
                prix=prix+proprietesAConstruire.getNb_Hotels()*100;
            }
-           this.payer(this.getArgent(),j);
+           this.getMonopoly().payer(this.getArgent(),j);
         }
         
-        else{this.payer(this.getArgent(),j);}
+        else{this.getMonopoly().payer(this.getArgent(),j);}
       }
 
       
-      public void payer(int $prix$,Joueur j){
-             j.payer($prix$);
-           if($prix$!= j.payer($prix$)){
-             this.getMonopoly().EstEliminé(j);
-           }
+    
       
-      }
+      
     /**
      * @return the argent
      */

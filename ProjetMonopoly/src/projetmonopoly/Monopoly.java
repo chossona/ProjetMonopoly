@@ -511,4 +511,10 @@ public class Monopoly {
         }
         return nbMaisons;
     }
+     public void payer(int $prix$,Joueur j){
+             j.payer($prix$);
+           if($prix$!= j.payer($prix$)){
+             this.EstEliminé(j);
+           }
+}
 }
