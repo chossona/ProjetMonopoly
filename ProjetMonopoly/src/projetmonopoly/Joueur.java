@@ -22,9 +22,9 @@ public class Joueur {
         this.tempsPrison = -1;
         this._compagnies = null;
         this._gares = null;
-        this._proprietesAConstruire =null;
-         setCarte_Caisse_Prison(false);
-         setCarte_Chance_Prison(false);
+        this._proprietesAConstruire = new ArrayList<>();
+         this.Carte_Caisse_Prison = false;
+         this.Carte_Chance_Prison = false;
     }
         
     

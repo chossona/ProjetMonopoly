@@ -264,8 +264,9 @@ public class Interface {
         System.out.println(txtCarte);
         Scanner suite = new Scanner(System.in);
         System.out.println("[Enter to Continu]");
+        while (suite.next()==null){
         suite.next();
-        
+        }
 
     }
 }
