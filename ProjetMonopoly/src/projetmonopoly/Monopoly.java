@@ -459,6 +459,7 @@ public class Monopoly {
         int position;
         int i =0;
         while (!fin_du_jeu()) {
+            if (this.getJoueurs().get(i).getTempsPrison() == -1){
             position = this.lancerDésAvancer(this.getJoueurs().get(i));
             position = position-1;
             this.carreau.get(position);
@@ -473,7 +474,10 @@ public class Monopoly {
             getInterf().affichagePlateau();
             if (i<this.getJoueurs().size()-1){i++;}
             else{i=0;}  
-            
+            }
+            else {
+                this.getInterf().GererPrison(i);
+            }
         }
         this.interf.AGagner(this.getJoueurs().get(0));
     }
