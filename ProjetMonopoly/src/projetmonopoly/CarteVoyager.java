@@ -19,6 +19,8 @@ public  class CarteVoyager extends Carte {
 
      @Override
       public void action(Joueur j,Boolean b){
+              this.getMonopoly().getInterf().afficherCarte(this.getNomCarte());
+
          if(this.getNumCarte()==26 ||this.getNumCarte()==8){
        j.setTempsPrison(-1);
        j.setPositionCourante(this.getMonopoly().getCarreau().get(10));

@@ -517,4 +517,5 @@ public class Monopoly {
              this.EstEliminé(j);
            }
 }
-}
+}  
+

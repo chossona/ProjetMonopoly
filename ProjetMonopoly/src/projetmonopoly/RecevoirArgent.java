@@ -15,6 +15,8 @@ public class RecevoirArgent extends Carte {
 
     @Override
     public void action(Joueur j, Boolean b) {
+            this.getMonopoly().getInterf().afficherCarte(this.getNomCarte());
+
         if (this.getNumCarte() == 19) {
             for (Joueur joueur : this.getMonopoly().getJoueurs()) {
                 if (!(joueur == j)) {

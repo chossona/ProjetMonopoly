@@ -68,6 +68,7 @@ public Carte(int numCarte, String nomCarte, boolean b,Monopoly monopoly) {
     }
   
     public void action(Joueur j,Boolean b){
+        this.getMonopoly().getInterf().afficherCarte(this.getNomCarte());
        if(this.getNumCarte()==17){
            j.setCarte_Caisse_Prison(true);
        }
