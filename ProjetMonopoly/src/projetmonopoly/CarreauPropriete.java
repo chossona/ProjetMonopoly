@@ -74,9 +74,13 @@ public abstract class CarreauPropriete extends Carreau {
         }
 
     }
+    
+    
        public int calculLoyerPropriété() {
-        return 50;
+        return this.getLoyerBase();
     }
+       
+       
     @Override
     public void action(Joueur j) {
         this.getMonopoly().getInterf().afficherInfos(this);

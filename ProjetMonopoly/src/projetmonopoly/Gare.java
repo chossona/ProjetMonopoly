@@ -6,5 +6,9 @@ public class Gare extends CarreauPropriete {
         super(_loyerBase, _prixAchat, _proprietaire, _numero, _nomCarreau, _monopoly);
     }
 
-    
+    @Override
+    public int calculLoyerPropriété() {
+       
+       return this.getProprietaire().getGares().size()*25;
+    }
 }

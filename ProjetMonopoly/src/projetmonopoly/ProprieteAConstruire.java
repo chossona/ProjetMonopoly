@@ -75,12 +75,9 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._groupePropriete = _groupePropriete;
     }
 
-    @Override
-   public int calculLoyerPropriété() {
-        return 50;
-    }
+ 
 
-
+  
 
     public boolean possedeCouleur(Joueur j) {
         boolean b = true;
@@ -172,6 +169,27 @@ public class ProprieteAConstruire extends CarreauPropriete {
     }
     
   
-    }
+    
 
+    @Override
+   public int calculLoyerPropriété() {
+       if (this.possedeCouleur(this.getProprietaire()) && this.getNb_Maisons() ==0 && this.getNb_Hotels() == 0){
+           return (this.getLoyerBase()*2);
+       }
+       else if (this.nb_Maisons != 0) {
+           return (this.getLoyerMaison().get(this.getNb_Maisons()));
+       }
+       else if (this.getNb_Hotels() != 0){
+           return this.getLoyerMaison().get(5);
+       }
+       else {
+           return this.getLoyerBase();
+       }
+       
+           
+           
+                   
+       
+    }
    
+}
