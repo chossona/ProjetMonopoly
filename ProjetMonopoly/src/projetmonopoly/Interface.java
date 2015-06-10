@@ -260,6 +260,14 @@ public class Interface {
                 }
                 }
     }
+    public void afficherCarte(String txtCarte){
+        System.out.println(txtCarte);
+        Scanner suite = new Scanner(System.in);
+        System.out.println("[Enter to Continu]");
+        suite.next();
+        
+
+    }
 }
                 
              

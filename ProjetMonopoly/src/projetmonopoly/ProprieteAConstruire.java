@@ -187,7 +187,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
             payerLoyer(j);
         }
     }
-  
+    
   
     }
 

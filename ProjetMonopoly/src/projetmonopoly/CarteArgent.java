@@ -15,7 +15,8 @@ public class CarteArgent extends Carte  {
      }
     @Override
       public void action(Joueur j,Boolean b){
-         
+             this.getMonopoly().getInterf().afficherCarte(this.getNomCarte());
+
         if(this.getNumCarte()==3){
             int prix=0;
            for (ProprieteAConstruire proprietesAConstruire : j.getProprietesAConstruire()) {
@@ -53,6 +54,7 @@ public class CarteArgent extends Carte  {
     public void setArgent(int argent) {
         this.argent = argent;
     }
+    
         
     }
     

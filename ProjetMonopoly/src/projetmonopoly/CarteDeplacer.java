@@ -23,6 +23,8 @@ public  class CarteDeplacer extends Carte {
 
 @Override
 public void action(Joueur j,Boolean b){
+        this.getMonopoly().getInterf().afficherCarte(this.getNomCarte());
+
 if(this.getNumCarte()==2){
         j.setPositionCourante(this.getMonopoly().getCarreau().get(this.getMonopoly().getCarreau().indexOf(j.getPositionCourante())-this.getCarreau()));
         }
