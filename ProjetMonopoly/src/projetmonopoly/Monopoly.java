@@ -165,8 +165,8 @@ public class Monopoly {
 
     public void SetDés() {
         Random x = new Random();
-        setD1(x.nextInt(6) + 1);
-        setD2(x.nextInt(6) + 1);
+        setD1(x.nextInt(6));
+        setD2(x.nextInt(6));
     }
 
     public int getD1() {
@@ -456,15 +456,22 @@ public class Monopoly {
            
             this.interf.afficherInfos(j);
         }
-        int position;
+        int position,compteurDouble;
+        
+        
         int i =0;
         while (!fin_du_jeu()) {
+            compteurDouble = 0;
+            
+                
+                
             if (this.getJoueurs().get(i).getTempsPrison() == -1){
             position = this.lancerDésAvancer(this.getJoueurs().get(i));
+            
             position = position-1;
             this.carreau.get(position);
             
-                
+             
                
                 
                 
@@ -472,11 +479,14 @@ public class Monopoly {
             this.interf.afficherInfos( this.getJoueurs().get(i));
             this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
             getInterf().affichagePlateau();
+            if (!(getD1() == getD2())){
+            compteurDouble = compteurDouble+1; if(compteurDouble ==3){this.getJoueur(i).setTempsPrison(0);}
             if (i<this.getJoueurs().size()-1){i++;}
             else{i=0;}  
             }
             else {
                 this.getInterf().GererPrison(i);
+            }
             }
         }
         this.interf.AGagner(this.getJoueurs().get(0));
