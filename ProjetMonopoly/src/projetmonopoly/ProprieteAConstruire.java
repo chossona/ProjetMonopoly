@@ -137,16 +137,16 @@ public class ProprieteAConstruire extends CarreauPropriete {
  
     
     private void construire(Joueur j) {
-        int construire =0;
+        int construire;
         if (possedeCouleur(j)) {
             boolean b=true;
             while(b){
             if(oùConstruire(this.getGroupePropriete())!=null){//regarde si le vecteur est null
             if(oùConstruire(this.getGroupePropriete()).get(0).getPrixAchat()>=j.getCash()){
                 for (ProprieteAConstruire oùConstruire : oùConstruire(this.getGroupePropriete())) {
-                this.getMonopoly().construire=this.getMonopoly().getInterf().;//A ffiche les numro des propriete et demande saisir le num 
+                construire=this.getMonopoly().getInterf().demandeConstruction(this.getGroupePropriete().getProprietes());//A ffiche les numro des propriete et demande saisir le num 
                 if(this.oùConstruire(this.getGroupePropriete()).contains(this.getGroupePropriete().getProprietes().get(construire))){
-                construire(this.getGroupePropriete().getProprietes().get(construire));
+                this.construire(this.getGroupePropriete().getProprietes().get(construire));
                 }
                 else{b=false;}
                 }
@@ -161,6 +161,17 @@ public class ProprieteAConstruire extends CarreauPropriete {
     protected void payerLoyer(Joueur j) {
         this.getProprietaire().setCash(this.getProprietaire().getCash() + this.calculLoyerPropriété());
         j.setCash(j.getCash() - this.calculLoyerPropriété());
+    }
+    
+    public void construire(ProprieteAConstruire p){
+        if (p.getNb_Maisons() == 4) {
+            this.setNb_Maisons(0);
+            this.setNb_Hotels(1);
+            
+        }
+        else {
+            this.setNb_Maisons(this.getNb_Maisons() + 1);
+        }
     }
 
     @Override

@@ -9,9 +9,9 @@ Voyager;Allez en prison. Avancez tout droit en prison. Ne passez pas par la case
 Voyager;Rendez-vous à l'Avenue Henri-Martin. Si vous passez par la case Départ,recevez 200€;9;24
 Voyager;Allez à la gare de Lyon. Si vous passez par la case Départ, recevez 200€;10;15
 Pargent;Payez pour frais de scolarité: 150€;11;150
-Rargent;Vous avez gagné le prix de mots croisés. Recevez 100€;12;10
+Pargent;Vous avez gagné le prix de mots croisés. Recevez 100€;12;-10
 Rargent;La Banque vous verse un dividende de 50€;13;50
 Voyager;Rendez-vous à la Rue de la Paix;14;39
-Rargent;Votre immeuble et votre prêt vous rapportent. Vous devez toucher 150€;15;150
+Pargent;Votre immeuble et votre prêt vous rapportent. Vous devez toucher 150€;15;-150
 Voyager;Accédez au Boulevard de la Villette. Si vous passez par la case Départ, recevez 200€;16;11
 
