@@ -223,7 +223,7 @@ public class Interface {
             }
             fin = fin + 1;
         }
-
+          System.out.println("");
     }
 
     public int demandeConstruction(ArrayList<ProprieteAConstruire> Prop) {
