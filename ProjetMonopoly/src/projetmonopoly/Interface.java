@@ -236,7 +236,7 @@ public class Interface {
          return x;      
     }
     public void GererPrison(int j/*entier du joueur*/ ){
-        System.out.println("temps en prison : " + this.getMonopoly().getJoueur(j));
+        System.out.println("temps en prison : " + this.getMonopoly().getJoueur(j).getTempsPrison());
         System.out.println("joueur en prison : " + this.getMonopoly().getJoueur(j).getNomJoueur());
         
                
@@ -255,8 +255,9 @@ public class Interface {
                   
                     Scanner sc = new Scanner(System.in);
                     
-                    System.out.println("Voulez vous utiliser votre carte  sortir de prison? oui/non");   
-                    if ("oui".equals(sc.nextLine())){
+                    System.out.println("Voulez vous utiliser votre carte  sortir de prison? oui/non");
+                    
+                    if ("oui" == (sc.nextLine())){
                         this.getMonopoly().getJoueur(j).setTempsPrison(-1);
                           System.out.println("Vous utiliser votre carte et sortez de prison");   
                           if (this.getMonopoly().getJoueur(j).getCarte_Caisse_Prison()){

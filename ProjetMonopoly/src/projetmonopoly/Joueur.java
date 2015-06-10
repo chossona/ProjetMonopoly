@@ -20,8 +20,8 @@ public class Joueur {
         this._monopoly = _monopoly;
         this._positionCourante = _positionCourante;
         this.tempsPrison = -1;
-        this._compagnies = null;
-        this._gares = null;
+        this._compagnies = new ArrayList<>();
+        this._gares = new ArrayList<>();
         this._proprietesAConstruire = new ArrayList<>();
          this.Carte_Caisse_Prison = false;
          this.Carte_Chance_Prison = false;

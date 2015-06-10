@@ -480,13 +480,14 @@ public class Monopoly {
             this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
             getInterf().affichagePlateau();
             if (!(getD1() == getD2())){
-            compteurDouble = compteurDouble+1; if(compteurDouble ==3){this.getJoueur(i).setTempsPrison(0);}
+            compteurDouble = compteurDouble+1; if(compteurDouble ==3){this.getJoueur(i).setTempsPrison(0);this.getJoueur(i).setPositionCourante(this.getCarreau().get(9));}
             if (i<this.getJoueurs().size()-1){i++;}
             else{i=0;}  
             }
+           
+            }
             else {
                 this.getInterf().GererPrison(i);
-            }
             }
         }
         this.interf.AGagner(this.getJoueurs().get(0));
