@@ -71,6 +71,21 @@ public class Interface {
 
     }
 
+     public void afficherInfos(CarreauPropriete prop) {
+        System.out.println("*****************************************************************************************************************");
+        System.out.println("Information Propriété : ");
+        System.out.println("*****************************************************************************************************************");
+        System.out.println();
+        System.out.println("Nom carreau : " + prop.getNomCarreau());
+        System.out.println("Prix carreau : " + prop.getPrixAchat());
+        String proprietaire = "Aucun Propriétaire";
+        if (!(prop.getProprietaire() ==null )){ proprietaire = prop.getProprietaire().getNomJoueur();}
+        System.out.println("Propiétaire carreau : " + proprietaire);
+
+        System.out.println();
+        System.out.println("*****************************************************************************************************************");
+     }
+        
     public void afficherInfos(ProprieteAConstruire prop) {
         System.out.println("*****************************************************************************************************************");
         System.out.println("Information Propriété : ");

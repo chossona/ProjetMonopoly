@@ -75,25 +75,12 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._groupePropriete = _groupePropriete;
     }
 
+    @Override
    public int calculLoyerPropriété() {
         return 50;
     }
 
-    protected void achatPropriete(Joueur j) {
 
-        if (this.getPrixAchat() <= j.getCash()) {
-            this.getMonopoly().getInterf().afficher("Voulez vous acheter la propriété ?");
-            if (this.getMonopoly().getInterf().reponse()) {
-                j.setCash(j.getCash() - this.getPrixAchat());
-                this.setProprietaire(j);
-            }
-            this.getMonopoly().getInterf().afficherInfos(this);
-
-        } else {
-            this.getMonopoly().getInterf().afficher("Vous n'avez pas assez de Cash");
-        }
-
-    }
 
     public boolean possedeCouleur(Joueur j) {
         boolean b = true;
@@ -158,11 +145,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
         }
     }
     }
-    protected void payerLoyer(Joueur j) {
-        this.getProprietaire().setCash(this.getProprietaire().getCash() + this.calculLoyerPropriété());
-        j.setCash(j.getCash() - this.calculLoyerPropriété());
-    }
-    
+
     public void construire(ProprieteAConstruire p){
         //construction des maison
         if (p.getNb_Maisons() == 4) {

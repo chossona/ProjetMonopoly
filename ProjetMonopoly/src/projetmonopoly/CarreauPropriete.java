@@ -46,6 +46,11 @@ public abstract class CarreauPropriete extends Carreau {
     public int getLoyerBase() {
         return _loyerBase;
     }
+        protected void payerLoyer(Joueur j) {
+        this.getProprietaire().setCash(this.getProprietaire().getCash() + this.calculLoyerPropriété());
+        j.setCash(j.getCash() - this.calculLoyerPropriété());
+    }
+    
 
     /**
      * @param _loyerBase the _loyerBase to set
@@ -54,8 +59,37 @@ public abstract class CarreauPropriete extends Carreau {
         this._loyerBase = _loyerBase;
     }
     
+    protected void achatPropriete(Joueur j) {
 
+        if (this.getPrixAchat() <= j.getCash()) {
+            this.getMonopoly().getInterf().afficher("Voulez vous acheter la propriété ?");
+            if (this.getMonopoly().getInterf().reponse()) {
+                j.setCash(j.getCash() - this.getPrixAchat());
+                this.setProprietaire(j);
+            }
+            this.getMonopoly().getInterf().afficherInfos(this);
+
+        } else {
+            this.getMonopoly().getInterf().afficher("Vous n'avez pas assez de Cash");
+        }
+
+    }
+       public int calculLoyerPropriété() {
+        return 50;
+    }
+    @Override
+    public void action(Joueur j) {
+        this.getMonopoly().getInterf().afficherInfos(this);
+        if (this.getProprietaire() == null) {
+
+            achatPropriete(j);
+        } else if (this.getProprietaire() != j) {
+            payerLoyer(j);
+
+    
  
+}
+    }
 }
 
    
