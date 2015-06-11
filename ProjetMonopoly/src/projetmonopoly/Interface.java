@@ -292,4 +292,10 @@ public void afficherInfosCarte(String s){
         }
 
     }
+    public void attente(){
+       
+      System.out.println("Appuyer sur la touche entrer pour continuer");
+      Scanner suite = new Scanner(System.in);
+      suite.nextLine();
+    }
 }

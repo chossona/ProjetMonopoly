@@ -17,7 +17,9 @@ public class CarreauArgent extends CarreauAction {
     }
     @Override
     public void action(Joueur j){
+        
       j.setCash(j.getCash()+getMontant());
+      this.getMonopoly().getInterf().attente();
     }
     
     

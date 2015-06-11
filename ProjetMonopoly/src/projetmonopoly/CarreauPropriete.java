@@ -88,6 +88,7 @@ public abstract class CarreauPropriete extends Carreau {
 
             achatPropriete(j);
         } else if (this.getProprietaire() != j) {
+            this.getMonopoly().getInterf().attente();
             payerLoyer(j);
 
     

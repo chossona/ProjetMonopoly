@@ -162,8 +162,10 @@ public class ProprieteAConstruire extends CarreauPropriete {
 
             achatPropriete(j);
         } else if (this.getProprietaire() == j) {
+            this.getMonopoly().getInterf().attente();
             construire(j);
         } else {
+            this.getMonopoly().getInterf().attente();
             payerLoyer(j);
         }
     }
