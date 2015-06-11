@@ -249,6 +249,7 @@ public void afficherInfosCarte(String s){
         System.out.println("Vous lancez les dés pour sortir de prison");
         this.getMonopoly().SetDés();
         System.out.println("Vous avez fait " + this.getMonopoly().getD1() + " et " + this.getMonopoly().getD2());
+        
         if (this.getMonopoly().getD1() == this.getMonopoly().getD2()) {
             System.out.println("Vous avez fait un double vous sortez de prison");
             this.getMonopoly().getJoueur(j).setTempsPrison(-1);
@@ -273,8 +274,8 @@ public void afficherInfosCarte(String s){
 
                 }
             } //payer
-            else if (this.getMonopoly().getJoueur(j).getTempsPrison() == 2) {
-                System.out.println("Voulez devez sortir de prison nous allons prendre 50 euros sur votre si vous ne les avez pas nous vous ferons passer sur la chaise electique.");
+            else if (this.getMonopoly().getJoueur(j).getTempsPrison() == 3) {
+                System.out.println("Voulez devez sortir de prison nous allons prendre 50 euros sur votre si vous ne les avez pas nous vous ferons passer sur la chaise electrique.");
                 this.getMonopoly().getJoueur(j).setTempsPrison(-1);
                 this.getMonopoly().payer(50, this.getMonopoly().getJoueur(j));
 

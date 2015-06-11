@@ -463,35 +463,44 @@ public void Jouer() {
         while (!fin_du_jeu()) {
 
             compteurDouble = 0;
-            if (this.getJoueurs().get(i).getTempsPrison() == -1) {
-                position = this.lancerDésAvancer(this.getJoueurs().get(i));
+            if (this.getJoueurs().get(i).getTempsPrison() == -1) {//teste prison
+                
+               
+                boolean b =true;
+                while(b){
 
-                position = position - 1;
-                this.carreau.get(position);
-
+                position = this.lancerDésAvancer(this.getJoueurs().get(i));//lance les des
+                
+         if((!(getD1() == getD2()))&& !(compteurDouble==2)){//le joueur ne peut pas faire l'action du carreau si il a fait trois doubles
+             
                 this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
                 this.interf.afficherInfos(this.getJoueurs().get(i));
                 this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau
                 getInterf().affichagePlateau();
-                if ((getD1() == getD2())) {
+         }   
+                
+                if (((getD1() == getD2())&& (this.getJoueur(i).getPositionCourante().getNomCarreau()!="Simple Visite / En Prison"))) {//gestion des doubles
                     compteurDouble = compteurDouble + 1;
                     if (compteurDouble == 3) {
                         this.getJoueur(i).setTempsPrison(0);
                         this.getJoueur(i).setPositionCourante(this.getCarreau().get(9));
-                        
+                        b = false;
                     }
-                    if (i < this.getJoueurs().size() - 1) {
-                        i++;
-                    } else {
-                        i = 0;
-                    }
-                    compteurDouble = 0;
+                    
+                }else{b = false;}//fin gestion double
                 }
 
-            } else {
+            } else {//gestion joueur en prison
 
                 this.getInterf().GererPrison(i);
             }
+          
+            if (i < this.getJoueurs().size() - 1) {//choix joueur
+                        i++;
+                    } else {
+                        i = 0;
+                    }//fin choix joueur
+                  
         }
         this.interf.AGagner(this.getJoueurs().get(0));
     }
