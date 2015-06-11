@@ -449,49 +449,53 @@ public class Monopoly {
     public boolean fin_du_jeu() {
         return (this.getJoueurs().size()==1);
     }
+public void Jouer() {
 
-    public void Jouer() {
-       
         for (Joueur j : this.getJoueurs()) {
-           
+
             this.interf.afficherInfos(j);
         }
-        int position,compteurDouble;
-        
-        
-        int i =0;
+
+        int position, compteurDouble;
+
+        int i = 0;
+
         while (!fin_du_jeu()) {
+
             compteurDouble = 0;
-            
-                
-                
-            if (this.getJoueurs().get(i).getTempsPrison() == -1){
-            position = this.lancerDésAvancer(this.getJoueurs().get(i));
-            
-            position = position-1;
-            this.carreau.get(position);
-            
-             
-               
-                
-                
-            this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
-            this.interf.afficherInfos( this.getJoueurs().get(i));
-            this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau2
-            getInterf().affichagePlateau();
-            if ((getD1() == getD2())){
-            compteurDouble = compteurDouble+1; if(compteurDouble ==3){this.getJoueur(i).setTempsPrison(0);this.getJoueur(i).setPositionCourante(this.getCarreau().get(9));}
-            if (i<this.getJoueurs().size()-1){i++;}
-            else{i=0;}  
-            }
-           
-            }
-            else {
+            if (this.getJoueurs().get(i).getTempsPrison() == -1) {
+                position = this.lancerDésAvancer(this.getJoueurs().get(i));
+
+                position = position - 1;
+                this.carreau.get(position);
+
+                this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
+                this.interf.afficherInfos(this.getJoueurs().get(i));
+                this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau
+                getInterf().affichagePlateau();
+                if ((getD1() == getD2())) {
+                    compteurDouble = compteurDouble + 1;
+                    if (compteurDouble == 3) {
+                        this.getJoueur(i).setTempsPrison(0);
+                        this.getJoueur(i).setPositionCourante(this.getCarreau().get(9));
+                        
+                    }
+                    if (i < this.getJoueurs().size() - 1) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    compteurDouble = 0;
+                }
+
+            } else {
+
                 this.getInterf().GererPrison(i);
             }
         }
         this.interf.AGagner(this.getJoueurs().get(0));
     }
+   
 
     /**
      * @return the Joueurs

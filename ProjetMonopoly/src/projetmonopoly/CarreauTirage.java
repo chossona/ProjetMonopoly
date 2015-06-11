@@ -12,9 +12,9 @@ public class CarreauTirage extends CarreauAction {
     
         Carte c;
 
-        if (this.getNumero() == 7 || this.getNumero() == 22 || this.getNumero() == 36) {
+        if (this.getNomCarreau()=="Chance") {
             c = this.getMonopoly().getCarteChance().getFirst();
-           
+           this.getMonopoly().getInterf().afficherInfosCarte(c.getNomCarte());
             if (c.getNumCarte() == 1) {
                 this.getMonopoly().getCarteChance().remove(c);
                  c.action(j,false);
@@ -24,7 +24,7 @@ public class CarreauTirage extends CarreauAction {
                 c.action(j,false);
             }
             
-        } else if (this.getNumero() == 2 || this.getNumero() == 17 || this.getNumero() == 33) {
+        } else {
             c = this.getMonopoly().getCarteCaisse().getFirst();
             
             if (c.getNumCarte() == 17) {

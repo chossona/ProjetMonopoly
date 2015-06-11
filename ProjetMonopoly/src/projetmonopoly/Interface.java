@@ -36,7 +36,12 @@ public class Interface {
     public void setMonopoly(Monopoly _monopoly) {
         this._monopoly = _monopoly;
     }
+public void afficherInfosCarte(String s){
+    System.out.println(s);
+    Scanner suite = new Scanner(System.in);
+    while(suite.next()==null){suite.next();}
 
+}
     public void afficherInfos(Joueur j) {
         System.out.println("*****************************************************************************************************************");
         System.out.println("nom joueur : " + j.getNomJoueur());
@@ -188,9 +193,9 @@ public class Interface {
 
 
     public void affichagePlateau() {
-        int fin = 1;
+        int fin = 0;
         int i = 0;
-        while (fin <= 8) {
+        while (fin <= 7) {
 
             System.out.println();
             for (int d = 1; d <= 5; d++) {
@@ -198,7 +203,7 @@ public class Interface {
                 System.out.print(ligne);
             }
             System.out.println();
-            for (int d = 1; d <= 5; d++) {
+            for (int d = 1; d <=5; d++) {
                  System.out.print(afficherLigneText(String.valueOf(this.getMonopoly().getCarreau().get(i).getNumero()))); 
                 i++;
             }
@@ -214,8 +219,9 @@ public class Interface {
             i = i - 5;
             for (int d = 1; d <= 5; d++) {
                 String JoueurPresent= "";
-                for (int e = 0; e < this.getMonopoly().getCarreau().get(i).joueurPresent().size(); e++) {
-                    JoueurPresent = (JoueurPresent + (this.getMonopoly().getCarreau().get(i).joueurPresent().get(e).getNomJoueur() + ' ' + this.getMonopoly().getCarreau().get(i).joueurPresent().get(i).getCash() + "€/"));
+                  
+                 for (int e = 0; e < this.getMonopoly().getCarreau().get(i).joueurPresent().size(); e++) {
+                    JoueurPresent = (JoueurPresent + (this.getMonopoly().getCarreau().get(i).joueurPresent().get(e).getNomJoueur() + ' ' + this.getMonopoly().getCarreau().get(i).joueurPresent().get(e).getCash() + "€/"));
                 }
                 System.out.print(afficherLigneText(JoueurPresent));
                                 System.out.println();
