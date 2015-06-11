@@ -471,13 +471,13 @@ public void Jouer() {
 
                 position = this.lancerDésAvancer(this.getJoueurs().get(i));//lance les des
                 
-         if((!(getD1() == getD2()))&& !(compteurDouble==2)){//le joueur ne peut pas faire l'action du carreau si il a fait trois doubles
+         
              
                 this.getJoueurs().get(i).setPositionCourante(this.carreau.get(position));//change position du joueur
                 this.interf.afficherInfos(this.getJoueurs().get(i));
                 this.carreau.get(position).action(this.getJoueurs().get(i));//appelle l'action du carreau
                 getInterf().affichagePlateau();
-         }   
+           
                 
                 if (((getD1() == getD2())&& (this.getJoueur(i).getPositionCourante().getNomCarreau()!="Simple Visite / En Prison"))) {//gestion des doubles
                     compteurDouble = compteurDouble + 1;
